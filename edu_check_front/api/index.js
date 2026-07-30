@@ -224,6 +224,11 @@ const api = {
     return request.get('/analysis/alerts', params);
   },
 
+  // ==================== AI 智能体 ====================
+  chatWithAgent(data) {
+    return request.post('/agent/chat', data);
+  },
+
   // ==================== 智能问答 ====================
   searchKnowledge(data) {
     return request.post('/knowledge/search', data);

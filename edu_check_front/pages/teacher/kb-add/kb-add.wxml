@@ -1,0 +1,40 @@
+<view class="page-container">
+  <view class="page-header">
+    <text class="h1">📝 新建知识库</text>
+    <text class="caption">添加后自动同步到智能问答</text>
+  </view>
+
+  <view class="card form-card">
+    <view class="form-group">
+      <text class="form-label">分类</text>
+      <picker value="{{categoryIndex}}" range="{{categoryOptions}}" bindchange="onCategoryChange">
+        <view class="picker-value">{{categoryOptions[categoryIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">问题 <text class="required">*</text></text>
+      <input class="form-input" placeholder="例如：怎么修改密码" value="{{question}}" bindinput="onQuestionInput" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">答案 <text class="required">*</text></text>
+      <textarea class="form-textarea" placeholder="输入详细的回答内容" value="{{answer}}" bindinput="onAnswerInput" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">关键词</text>
+      <input class="form-input" placeholder="用逗号分隔，例如：密码,修改密码,账号" value="{{keywords}}" bindinput="onKeywordsInput" />
+    </view>
+  </view>
+
+  <view class="btn-group">
+    <button class="btn btn-primary" bindtap="submit" disabled="{{submitting}}">
+      {{submitting ? '提交中…' : '提交并同步到 RAG'}}
+    </button>
+  </view>
+
+  <view wx:if="{{resultVisible}}" class="card {{resultSuccess ? 'result-success' : 'result-fail'}}">
+    <text>{{resultMsg}}</text>
+  </view>
+</view>

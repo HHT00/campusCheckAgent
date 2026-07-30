@@ -25,7 +25,8 @@
     "pages/feedback/feedback",
     "pages/qa/qa",
     "pages/teacher/unanswered/unanswered",
-    "pages/teacher/alert/alert"
+    "pages/teacher/alert/alert",
+    "pages/teacher/kb-add/kb-add"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

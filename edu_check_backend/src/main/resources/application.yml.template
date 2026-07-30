@@ -56,6 +56,18 @@ deepseek:
   temperature: 0.3
   max-tokens: 512
 
+# LangChain4j Agent 配置
+langchain4j:
+  open-ai:
+    chat-model:
+      base-url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY:your_deepseek_api_key}
+      model-name: deepseek-chat
+      temperature: 0.1
+      max-tokens: 1024
+      log-requests: true
+      log-responses: true
+
 baidu-cloud:
   app-id: ${BAIDU_APP_ID:your_baidu_app_id}
   api-key: ${BAIDU_API_KEY:your_baidu_api_key}

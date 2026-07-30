@@ -28,6 +28,8 @@ public class Announcement {
 
     private Integer isTop;
 
+    private Integer readCount;
+
     private Integer status;
 
     @TableField(fill = FieldFill.INSERT)

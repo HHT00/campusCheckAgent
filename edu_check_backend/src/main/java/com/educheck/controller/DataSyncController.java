@@ -26,6 +26,7 @@ public class DataSyncController {
     private final FeatureDailyService featureDailyService;
     private final FeatureDailySchedulerService schedulerService;
     private final AlertRuleEngine alertRuleEngine;
+    private final com.educheck.agent.KnowledgeBaseRag knowledgeBaseRag;
 
     @PostMapping("/all")
     @Operation(summary = "手动触发全量数据同步（点击后立即统计）")
@@ -95,5 +96,12 @@ public class DataSyncController {
     public Result<String> syncAlerts() {
         alertRuleEngine.execute();
         return Result.success("预警规则已执行");
+    }
+
+    @PostMapping("/vectors")
+    @Operation(summary = "全量重建知识库向量索引（使用 LangChain4j RAG）")
+    public Result<String> rebuildVectors() {
+        knowledgeBaseRag.rebuild();
+        return Result.success("知识库索引已重建");
     }
 }

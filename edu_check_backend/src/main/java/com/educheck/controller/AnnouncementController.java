@@ -7,6 +7,7 @@ import com.educheck.common.TokenContextHolder;
 import com.educheck.entity.Announcement;
 import com.educheck.service.AnnouncementService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.jdbc.core.JdbcTemplate;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class AnnouncementController {
 
     private final AnnouncementService announcementService;
     private final TokenContextHolder tokenContextHolder;
+    private final JdbcTemplate jdbcTemplate;
 
     private static final Map<String, String> TYPE_NAME_MAP = Map.of(
             "notice", "通知公告",
@@ -67,13 +69,27 @@ public class AnnouncementController {
         return Result.success(toMap(top));
     }
 
-    /** 获取公告详情 */
+    /** 获取公告详情（自动记录阅读） */
     @GetMapping("/{id}")
     @Operation(summary = "获取公告详情")
     public Result<Map<String, Object>> detail(@PathVariable Long id) {
         Announcement a = announcementService.getById(id);
         if (a == null) return Result.error("公告不存在");
+        // 增加阅读数
+        jdbcTemplate.update("UPDATE announcement SET read_count = read_count + 1 WHERE id = ?", id);
+        a.setReadCount((a.getReadCount() != null ? a.getReadCount() : 0) + 1);
         return Result.success(toMap(a));
+    }
+
+    /** 标记已读（带用户记录） */
+    @PostMapping("/{id}/read")
+    @Operation(summary = "标记公告已读")
+    public Result<Void> markRead(@PathVariable Long id) {
+        Long userId = tokenContextHolder.requireCurrentUserId();
+        jdbcTemplate.update(
+            "INSERT IGNORE INTO announcement_read (announcement_id, user_id) VALUES (?, ?)", id, userId);
+        jdbcTemplate.update("UPDATE announcement SET read_count = read_count + 1 WHERE id = ?", id);
+        return Result.success(null);
     }
 
     /** 发布公告（教师） */
@@ -154,6 +170,7 @@ public class AnnouncementController {
         m.put("content", a.getContent());
         m.put("department", a.getDepartment());
         m.put("isTop", a.getIsTop());
+        m.put("readCount", a.getReadCount() != null ? a.getReadCount() : 0);
         m.put("createdAt", a.getCreatedAt());
         return m;
     }

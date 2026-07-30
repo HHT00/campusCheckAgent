@@ -119,6 +119,7 @@ Page({
   goFace() { wx.navigateTo({ url: '/pages/face/face' }); },
   goTeacherPanel() { wx.navigateTo({ url: '/pages/teacher/teacher' }); },
   goAlertCenter() { wx.navigateTo({ url: '/pages/teacher/alert/alert' }); },
+  goKbAdd() { wx.navigateTo({ url: '/pages/teacher/kb-add/kb-add' }); },
   goStudents(e) {
     const filter = e.currentTarget.dataset.filter || '';
     wx.navigateTo({ url: '/pages/teacher/students?filter=' + filter });

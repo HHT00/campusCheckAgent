@@ -72,6 +72,11 @@
       <text class="func-title">公告</text>
       <text class="func-desc">发布通知</text>
     </view>
+    <view class="func-card" bindtap="goKbAdd" hover-class="func-hover">
+      <view class="func-icon" style="background: #F3E5F5;">🧠</view>
+      <text class="func-title">知识库</text>
+      <text class="func-desc">新增自动同步RAG</text>
+    </view>
   </view>
 
   <!-- 数据分析排行 -->
@@ -127,5 +132,10 @@
   <view class="export-bar" style="margin-top:16rpx;" bindtap="exportSummary">
     <text class="export-icon">📥</text>
     <text class="export-text">导出今日概览数据</text>
+  </view>
+  <view class="export-bar" style="margin-top:16rpx;" bindtap="rebuildVectors">
+    <text class="export-icon">🧠</text>
+    <text class="export-text">重建知识库向量</text>
+    <text class="export-sub">{{vectorStatus}}</text>
   </view>
 </view>

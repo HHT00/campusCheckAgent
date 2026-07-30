@@ -1,0 +1,56 @@
+.page-header { margin-bottom: var(--space-xl); }
+
+.form-card { padding: var(--space-xl); }
+.form-group { margin-bottom: var(--space-lg); }
+.form-label {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+.required { color: var(--danger); }
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-lg);
+  font-size: var(--font-base);
+}
+.form-textarea {
+  width: 100%;
+  height: 240rpx;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-base);
+  line-height: 1.6;
+}
+.picker-value {
+  width: 100%;
+  height: 88rpx;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-lg);
+  font-size: var(--font-base);
+  line-height: 88rpx;
+  color: var(--gray-700);
+}
+
+.btn-group { margin: var(--space-xl) 0; }
+
+.result-success {
+  background: var(--success-light);
+  color: var(--success);
+  font-weight: 500;
+}
+.result-fail {
+  background: var(--danger-light);
+  color: var(--danger);
+  font-weight: 500;
+}

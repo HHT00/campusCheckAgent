@@ -70,20 +70,15 @@ Page({
     }, () => this.scrollToBottom());
 
     try {
-      const result = await api.searchKnowledge({
-        question,
-        category: this.data.category,
-        history
-      });
+      const result = await api.chatWithAgent({ message: question, history });
 
-      const answer = result?.answer || '未找到相关答案，请尝试换一种问法或选择其他分类。';
-      const sources = result?.sources || [];
+      const answer = result?.reply || '抱歉，我没有理解您的问题。';
 
       this.setData({
         messages: [...this.data.messages, {
           role: 'ai',
           content: answer,
-          sources
+          sources: []
         }]
       }, () => this.scrollToBottom());
     } catch (err) {

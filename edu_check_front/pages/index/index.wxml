@@ -177,6 +177,11 @@
         <text class="func-title">公告管理</text>
         <text class="func-desc">发布通知</text>
       </view>
+      <view class="func-card" bindtap="goKbAdd" hover-class="func-hover">
+        <view class="func-icon" style="background: #F3E5F7;">🧠</view>
+        <text class="func-title">知识库</text>
+        <text class="func-desc">新增自动同步RAG</text>
+      </view>
     </view>
   </block>
 

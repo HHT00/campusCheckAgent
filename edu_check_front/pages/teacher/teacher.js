@@ -8,6 +8,7 @@ Page({
   data: {
     currentDate: '',
     syncStatus: '',
+    vectorStatus: '',
     summary: { totalStudents: 128, classChecked: 96, classNotChecked: 32, dormChecked: 112, dormNotChecked: 16 },
     pendingCount: 3,
     alerts: [
@@ -94,6 +95,26 @@ Page({
     });
   },
 
+  /** 重建知识库向量索引 */
+  rebuildVectors() {
+    this.setData({ vectorStatus: '重建中…' });
+    wx.request({
+      url: 'http://localhost:8080/api/sync/vectors',
+      method: 'POST',
+      header: { 'Authorization': wx.getStorageSync('token') || '' },
+      success: (res) => {
+        if (res.data?.code === 200) {
+          this.setData({ vectorStatus: '✅ 重建完成' });
+          app.showToast('向量索引已重建', 'success');
+        } else {
+          this.setData({ vectorStatus: '❌ 重建失败' });
+        }
+      },
+      fail: () => { this.setData({ vectorStatus: '❌ 后端未连接' }); },
+      complete: () => { setTimeout(() => this.setData({ vectorStatus: '' }), 5000); }
+    });
+  },
+
   exportSummary() {
     const s = this.data.summary;
     const t = s.totalStudents || 1;
@@ -108,5 +129,6 @@ Page({
   goAlertCenter() { wx.navigateTo({ url: '/pages/teacher/alert/alert' }); },
   goLeaveApprove() { wx.navigateTo({ url: '/pages/teacher/leave-approve' }); },
   goDynamicCode() { wx.navigateTo({ url: '/pages/teacher/dynamic-code' }); },
-  goAnnouncePublish() { wx.navigateTo({ url: '/pages/teacher/announce-publish' }); }
+  goAnnouncePublish() { wx.navigateTo({ url: '/pages/teacher/announce-publish' }); },
+  goKbAdd() { wx.navigateTo({ url: '/pages/teacher/kb-add/kb-add' }); }
 });
