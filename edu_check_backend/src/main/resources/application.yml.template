@@ -1,3 +1,9 @@
+# ============================================
+# 校园考勤助手 - 配置文件模板
+# 复制为 application.yml 并填入实际值
+# cp application.yml.template application.yml
+# ============================================
+
 server:
   port: 8080
 
@@ -8,7 +14,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cs_edu0717?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: 1111111
+    password: ${MYSQL_PASSWORD:your_password_here}
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
@@ -36,30 +42,26 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
 
-# JWT 配置
 jwt:
-  secret: edu-check-secret-key-2026-spring-boot-backend-for-campus-attendance
-  expiration: 86400000  # 24小时
+  secret: ${JWT_SECRET:edu-check-secret-key-change-me-in-production}
+  expiration: 86400000
 
-# 人脸图片上传存储路径
 face:
   upload-dir: uploads/face
 
-# DeepSeek 大模型配置（OpenAI 兼容接口）
 deepseek:
-  api-key: sk-d9e61623f369475da4616e377cc476a6
+  api-key: ${DEEPSEEK_API_KEY:your_deepseek_api_key}
   base-url: https://api.deepseek.com
-  model: deepseek-v4-flash
+  model: deepseek-chat
   temperature: 0.3
   max-tokens: 512
 
-# 百度智能云 AI 配置
 baidu-cloud:
-  app-id: 124003723
-  api-key: 4l065xogHmHwC6k9f3Sre75k
-  secret-key: UMQXILxNY8TtvUDRsl96wfEM5BwLXs1Z
+  app-id: ${BAIDU_APP_ID:your_baidu_app_id}
+  api-key: ${BAIDU_API_KEY:your_baidu_api_key}
+  secret-key: ${BAIDU_SECRET_KEY:your_baidu_secret_key}
   face:
-    score-threshold: 80           # 人脸对比通过阈值（0-100）
+    score-threshold: 80
 
 springdoc:
   swagger-ui:

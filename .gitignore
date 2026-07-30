@@ -1,0 +1,62 @@
+# ===== 密钥和配置（含密码/token，禁止提交）=====
+application.yml
+application-local.yml
+application-dev.yml
+application-prod.yml
+*.private.*
+
+# ===== Java 构建产物 =====
+target/
+*.class
+*.jar
+*.war
+*.log
+hs_err_pid*
+
+# ===== 前端构建产物 =====
+node_modules/
+dist/
+.npm/
+package-lock.json
+yarn.lock
+
+# ===== IDE 配置 =====
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# ===== OS 文件 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 上传文件 =====
+uploads/
+*.jpg
+*.png
+*.gif
+*.bmp
+!images/
+
+# ===== 微信小程序 =====
+project.private.config.json
+
+# ===== 项目文档 =====
+*.md
+!README.md
+
+# ===== 临时文件 =====
+tmp/
+temp/
+*.tmp
+*.bak
+
+# ===== 环境变量 =====
+.env
+.env.local
+.env.production
