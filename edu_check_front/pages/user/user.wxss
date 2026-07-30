@@ -1,0 +1,253 @@
+/* 用户中心页面样式 */
+
+/* 个人资料头部 */
+.offline-banner {
+  background: #FFF3E0;
+  padding: 16rpx 24rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+  color: #E67E22;
+  text-align: center;
+}
+
+.profile-header {
+  position: relative;
+  border-radius: 28rpx;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+}
+
+.profile-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 280rpx;
+  background: #C0392B;
+}
+
+.profile-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 40rpx 32rpx 32rpx;
+  z-index: 1;
+}
+
+.profile-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255,255,255,0.6);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-info {
+  flex: 1;
+  margin-left: 24rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4rpx;
+}
+
+.profile-id {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 2rpx;
+}
+
+.profile-college {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.6);
+}
+
+.profile-edit {
+  padding: 10rpx 24rpx;
+  background: rgba(255,255,255,0.2);
+  border: 1rpx solid rgba(255,255,255,0.3);
+  border-radius: 24rpx;
+  color: #fff;
+  font-size: 24rpx;
+  cursor: pointer;
+}
+
+/* 统计行 - 白底分隔 */
+.profile-stats-row {
+  position: relative;
+  display: flex;
+  background: #fff;
+  padding: 28rpx 0;
+  z-index: 1;
+  margin: 0 0 0 0;
+}
+
+.profile-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1rpx solid #F0F0F0;
+}
+
+.profile-stat:last-child {
+  border-right: none;
+}
+
+.profile-stat-num {
+  font-size: 38rpx;
+  font-weight: 800;
+  color: #C0392B;
+  margin-bottom: 4rpx;
+}
+
+.profile-stat-label {
+  font-size: 22rpx;
+  color: #95A5A6;
+}
+
+/* 思政档案 */
+.archive-card {
+  padding: 28rpx;
+}
+
+.archive-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.archive-title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.archive-more {
+  font-size: 24rpx;
+  color: #3498DB;
+}
+
+.archive-grid {
+  display: flex;
+  gap: 16rpx;
+}
+
+.archive-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  background: #F8F9FA;
+  border-radius: 16rpx;
+}
+
+.archive-value {
+  font-size: 36rpx;
+  font-weight: 800;
+  margin-bottom: 6rpx;
+}
+
+.archive-label {
+  font-size: 22rpx;
+  color: #95A5A6;
+  text-align: center;
+}
+
+/* 功能菜单 */
+.menu-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-item:active {
+  background: #F8F9FA;
+}
+
+.menu-item.no-border {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 32rpx;
+  margin-right: 24rpx;
+  width: 40rpx;
+  text-align: center;
+}
+
+.menu-label {
+  flex: 1;
+  font-size: 28rpx;
+  color: #2C3E50;
+}
+
+.menu-badge {
+  padding: 4rpx 16rpx;
+  background: #E74C3C;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  margin-right: 12rpx;
+}
+
+.menu-tag {
+  padding: 4rpx 16rpx;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  margin-right: 12rpx;
+}
+
+.menu-tag.tag-done {
+  background: #E8F8F5;
+  color: #00B894;
+  border: 1rpx solid #A3E4D7;
+}
+
+.menu-tag.tag-todo {
+  background: #FDEDEC;
+  color: #E74C3C;
+  border: 1rpx solid #F5B7B1;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: #BDC3C7;
+  font-weight: 300;
+}
+
+.menu-desc {
+  font-size: 22rpx;
+  color: #999;
+  margin-right: 12rpx;
+}
+.menu-hover {
+  opacity: 0.7;
+}
+.badge-pending {
+  color: #E74C3C;
+  font-weight: 500;
+}
+

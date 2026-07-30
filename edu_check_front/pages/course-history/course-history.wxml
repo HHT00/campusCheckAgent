@@ -1,0 +1,36 @@
+<page class="page-container">
+  <view class="history-page">
+    <view class="summary-bar">
+      <text class="summary-text">共 {{total}} 次上课签到</text>
+    </view>
+
+    <view class="record-list">
+      <view class="record-item" wx:for="{{recordList}}" wx:key="id">
+        <view class="record-left">
+          <view class="course-tag-bg">
+            <text>📖</text>
+          </view>
+        </view>
+        <view class="record-center">
+          <text class="record-course">{{item.courseName || '课程签到'}}</text>
+          <text class="record-time">{{item.date}} {{item.checkinTime ? item.checkinTime.split(' ')[1] : ''}}</text>
+        </view>
+        <text class="tag {{item.status === 'present' ? 'tag-success' : (item.status === 'late' ? 'tag-warning' : 'tag-danger')}}">
+          {{item.status === 'present' ? '已签到' : (item.status === 'late' ? '迟到' : '缺勤')}}
+        </text>
+      </view>
+    </view>
+
+    <view class="load-more" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+    <view class="load-more" wx:elif="{{!hasMore && recordList.length > 0}}">
+      <text>— 已显示全部记录 —</text>
+    </view>
+    <view class="load-more" wx:elif="{{!loading && recordList.length === 0}}">
+      <text>暂无签到记录</text>
+    </view>
+
+    <view class="scroll-trigger" bindtap="loadMore" wx:if="{{hasMore && !loading}}"></view>
+  </view>
+</page>

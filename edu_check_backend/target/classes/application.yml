@@ -1,0 +1,73 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: edu-check-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cs_edu0717?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 1111111
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      connection-timeout: 30000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.educheck.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT 配置
+jwt:
+  secret: edu-check-secret-key-2026-spring-boot-backend-for-campus-attendance
+  expiration: 86400000  # 24小时
+
+# 人脸图片上传存储路径
+face:
+  upload-dir: uploads/face
+
+# DeepSeek 大模型配置（OpenAI 兼容接口）
+deepseek:
+  api-key: sk-d9e61623f369475da4616e377cc476a6
+  base-url: https://api.deepseek.com
+  model: deepseek-v4-flash
+  temperature: 0.3
+  max-tokens: 512
+
+# 百度智能云 AI 配置
+baidu-cloud:
+  app-id: 124003723
+  api-key: 4l065xogHmHwC6k9f3Sre75k
+  secret-key: UMQXILxNY8TtvUDRsl96wfEM5BwLXs1Z
+  face:
+    score-threshold: 80           # 人脸对比通过阈值（0-100）
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+knife4j:
+  enable: true
+  setting:
+    language: zh-CN

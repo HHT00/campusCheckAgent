@@ -1,0 +1,312 @@
+/* 查寝打卡页面样式 */
+
+.page-header {
+  margin-bottom: 24rpx;
+}
+
+/* 时间卡片 - 使用复合选择器提升优先级，确保覆盖 .card 的白色背景 */
+.card.time-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2C3E50 !important;
+  padding: 32rpx;
+}
+
+.time-card-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-label {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6rpx;
+}
+
+.time-value {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.time-date {
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.8);
+}
+
+.time-weekday {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4rpx;
+}
+
+/* 定位卡片 */
+.location-card {
+  padding: 28rpx;
+}
+
+.location-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.location-title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.location-status {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #95A5A6;
+}
+
+.location-status.status-success {
+  color: #00B894;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #BDC3C7;
+  margin-right: 8rpx;
+}
+
+.status-success .status-dot {
+  background: #00B894;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 160rpx;
+  background: #F0F2F5;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.map-placeholder:active {
+  opacity: 0.7;
+}
+
+.map-placeholder.located {
+  background: #E8F8F5;
+}
+
+.map-icon {
+  font-size: 56rpx;
+}
+
+.location-detail {
+  margin-top: 16rpx;
+}
+
+.detail-hint {
+  display: block;
+  font-size: 24rpx;
+  color: #95A5A6;
+  margin-top: 12rpx;
+  text-align: center;
+}
+
+.detail-addr {
+  display: block;
+  font-size: 24rpx;
+  color: #2C3E50;
+  margin-top: 8rpx;
+  padding: 8rpx 16rpx;
+  background: #F0F2F5;
+  border-radius: 12rpx;
+  word-break: break-all;
+}
+
+.detail-range {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #00B894;
+  font-weight: 600;
+  margin-top: 8rpx;
+  padding: 4rpx 16rpx;
+  background: #E8F8F5;
+  border-radius: 12rpx;
+}
+
+.detail-range.danger {
+  color: #E74C3C;
+  background: #FDEDEC;
+}
+
+/* 人脸识别卡片 */
+.face-card {
+  padding: 28rpx;
+}
+
+.face-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.face-title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.face-status {
+  font-size: 24rpx;
+  color: #95A5A6;
+}
+
+.face-status.status-success {
+  color: #00B894;
+}
+
+.face-area {
+  width: 100%;
+  height: 200rpx;
+  background: #F5F7FA;
+  border: 2rpx dashed #D5D8DC;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.face-area:active {
+  opacity: 0.7;
+}
+
+.face-area.face-verified {
+  border-color: #00B894;
+  background: #E8F8F5;
+}
+
+.face-icon {
+  font-size: 56rpx;
+  margin-bottom: 8rpx;
+}
+
+.face-tip {
+  font-size: 24rpx;
+  color: #95A5A6;
+}
+
+/* 拍照结果图片 */
+.face-photo-wrap {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.face-photo {
+  width: 100%;
+  height: 100%;
+}
+
+/* 人脸验证中 */
+.face-verifying {
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.face-verify-msg {
+  font-size: 28rpx;
+  color: #3498DB;
+  font-weight: 600;
+}
+
+/* 人脸验证失败 */
+.face-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx;
+  background: #FDEDEC;
+  border-radius: 12rpx;
+  margin-top: 12rpx;
+}
+
+.face-error-text {
+  font-size: 24rpx;
+  color: #E74C3C;
+  flex: 1;
+}
+
+.face-retake {
+  font-size: 24rpx;
+  color: #3498DB;
+  text-decoration: underline;
+  margin-left: 12rpx;
+}
+
+/* 打卡按钮 */
+.btn-primary {
+  margin: 16rpx 0 32rpx;
+}
+
+/* 历史记录 */
+.history-card {
+  padding: 28rpx;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.history-title {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.history-more {
+  font-size: 24rpx;
+  color: #3498DB;
+  cursor: pointer;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-date {
+  font-size: 26rpx;
+  color: #2C3E50;
+  font-weight: 500;
+}
+
+.history-time {
+  font-size: 24rpx;
+  color: #95A5A6;
+}

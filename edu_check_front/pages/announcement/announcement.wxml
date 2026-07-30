@@ -1,0 +1,69 @@
+<view class="page-container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-title">📢 校园公告</text>
+    <text class="publish-btn" wx:if="{{isTeacher}}" bindtap="goPublish">公告管理</text>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <text class="search-icon">🔍</text>
+    <input class="search-input" placeholder="搜索公告..." bindinput="onSearch" />
+  </view>
+
+  <!-- 分类标签 -->
+  <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="category-list">
+      <view class="category-tag {{currentCategory === 'all' ? 'active' : ''}}" bindtap="switchCategory" data-category="all">
+        <text>全部</text>
+      </view>
+      <view class="category-tag {{currentCategory === 'notice' ? 'active' : ''}}" bindtap="switchCategory" data-category="notice">
+        <text>📋 通知公告</text>
+      </view>
+      <view class="category-tag {{currentCategory === 'activity' ? 'active' : ''}}" bindtap="switchCategory" data-category="activity">
+        <text>🎉 活动预告</text>
+      </view>
+      <view class="category-tag {{currentCategory === 'academic' ? 'active' : ''}}" bindtap="switchCategory" data-category="academic">
+        <text>📚 学术讲座</text>
+      </view>
+      <view class="category-tag {{currentCategory === 'policy' ? 'active' : ''}}" bindtap="switchCategory" data-category="policy">
+        <text>📄 思政教育</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 置顶公告 -->
+  <view class="card top-announce" wx:if="{{currentCategory === 'all'}}" bindtap="viewDetail" data-id="{{topAnnounce.id}}">
+    <view class="top-tag">
+      <text class="top-tag-text">置顶</text>
+    </view>
+    <view class="top-content">
+      <text class="top-title">{{topAnnounce.title}}</text>
+      <text class="top-summary">{{topAnnounce.summary}}</text>
+      <view class="top-meta">
+        <text class="top-date">{{topAnnounce.date}}</text>
+        <text class="top-department">{{topAnnounce.department}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 公告列表 -->
+  <view class="announce-list">
+    <view class="card announce-item" wx:for="{{announceList}}" wx:for-item="item" wx:key="id" bindtap="viewDetail" data-id="{{item.id}}">
+      <view class="announce-tag {{item.type}}">
+        <text>{{item.typeName}}</text>
+      </view>
+      <text class="announce-title">{{item.title}}</text>
+      <text class="announce-summary">{{item.summary}}</text>
+      <view class="announce-footer">
+        <text class="announce-date">{{item.date}}</text>
+        <text class="announce-read">{{item.readCount}}人已读</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" bindtap="loadMore">
+    <text class="load-more-text">{{hasMore ? '加载更多' : '没有更多了'}}</text>
+  </view>
+</view>

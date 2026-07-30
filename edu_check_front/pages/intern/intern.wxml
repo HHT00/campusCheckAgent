@@ -1,0 +1,146 @@
+<view class="page-container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-title">💼 实习打卡</text>
+  </view>
+
+  <!-- 实习信息 -->
+  <view class="card intern-card">
+    <view class="intern-top">
+      <view class="intern-company-icon">
+        <text>🏢</text>
+      </view>
+      <view class="intern-company-info">
+        <text class="company-name">{{internInfo.company}}</text>
+        <text class="company-role">{{internInfo.role}}</text>
+      </view>
+      <view class="intern-status">
+        <text class="tag tag-success">实习中</text>
+      </view>
+    </view>
+    <view class="intern-progress">
+      <view class="progress-header">
+        <text class="progress-label">实习进度</text>
+        <text class="progress-text">{{internInfo.progress}}%</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{internInfo.progress}}%"></view>
+      </view>
+      <text class="progress-detail">
+        已实习 {{internInfo.completedDays}} 天 / 共 {{internInfo.totalDays}} 天
+      </text>
+    </view>
+  </view>
+
+  <!-- 定位签到 -->
+  <view class="card">
+    <view class="section-card-header">
+      <text class="section-card-title">📍 定位签到</text>
+      <text class="section-card-status {{locationChecked ? 'status-success' : ''}}">
+        {{locationChecked ? '已签到' : '未签到'}}
+      </text>
+    </view>
+    <view class="location-box" bindtap="getLocation">
+      <text class="loc-icon">{{locationChecked ? '📍' : '🗺️'}}</text>
+    </view>
+    <view class="location-result" wx:if="{{locationChecked && locationAddr}}">
+      <text class="detail-addr">{{locationAddr}}</text>
+    </view>
+  </view>
+
+  <!-- 工作日志 -->
+  <view class="card">
+    <view class="section-card-header">
+      <text class="section-card-title">📝 工作日志</text>
+    </view>
+    <textarea class="log-textarea"
+              placeholder="描述今日工作内容..."
+              value="{{logContent}}"
+              bindinput="onLogInput"
+              maxlength="500"
+              auto-height />
+    <view class="log-counter">
+      <text>{{logContent.length}}/500</text>
+    </view>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="card">
+    <view class="section-card-header">
+      <text class="section-card-title">📷 工作留影</text>
+    </view>
+    <view class="upload-area">
+      <view class="upload-grid">
+        <view class="upload-item" wx:for="{{photos}}" wx:key="index">
+          <image src="{{item.url}}" mode="aspectFill" class="upload-image"></image>
+          <view class="upload-remove" bindtap="removePhoto" data-index="{{index}}">
+            <text>×</text>
+          </view>
+        </view>
+        <view class="upload-item upload-add" wx:if="{{photos.length < 4}}" bindtap="addPhoto">
+          <text class="add-icon">+</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 人脸验证 -->
+  <view class="card face-card" wx:if="{{!checkedIn}}">
+    <view class="face-card-header">
+      <text class="face-card-title">😀 人脸验证</text>
+      <text class="face-card-tip">打卡前需完成人脸比对</text>
+    </view>
+
+    <!-- 未拍照 -->
+    <view class="face-action" wx:if="{{!facePhotoUrl && !faceVerifying}}" bindtap="startFaceCheck">
+      <view class="face-camera-icon">
+        <text>📷</text>
+      </view>
+      <text class="face-action-text">点击拍照验证</text>
+    </view>
+
+    <!-- 验证中 -->
+    <view class="face-verifying" wx:if="{{faceVerifying}}">
+      <text class="face-verify-msg">⏳ 人脸验证中...</text>
+    </view>
+
+    <!-- 验证结果 -->
+    <view class="face-photo-row" wx:if="{{facePhotoUrl && !faceVerifying}}">
+      <image class="face-photo-thumb" src="{{facePhotoUrl}}" mode="aspectFill" />
+      <view class="face-result {{faceVerified ? 'pass' : 'fail'}}">
+        <text class="face-result-text">{{faceVerifyMsg}}</text>
+        <text class="face-retake" wx:if="{{!faceVerified}}" bindtap="startFaceCheck">重新验证</text>
+        <text class="face-retake" wx:if="{{faceVerified}}" bindtap="startFaceCheck">重新拍照</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="btn-primary {{!canSubmit ? 'btn-disabled' : ''}}"
+          disabled="{{!canSubmit}}"
+          bindtap="doInternCheckin"
+          loading="{{submitting}}">
+    {{submitting ? '提交中...' : (checkedIn ? '今日已打卡' : '提交打卡')}}
+  </button>
+
+  <!-- 打卡记录 -->
+  <view class="card history-card">
+    <view class="history-header">
+      <text class="history-title">📋 近期实习记录</text>
+      <text class="history-more" bindtap="viewAllHistory">查看全部 ›</text>
+    </view>
+    <view class="history-list">
+      <view class="history-item" wx:for="{{history}}" wx:for-item="item" wx:key="index">
+        <view class="history-date-box">
+          <text class="history-day">{{item.day}}</text>
+          <text class="history-date-text">{{item.date}}</text>
+        </view>
+        <view class="history-content">
+          <text class="history-log">{{item.log}}</text>
+          <text class="history-time">{{item.time}}</text>
+        </view>
+        <text class="tag tag-success">{{item.status}}</text>
+      </view>
+    </view>
+  </view>
+</view>

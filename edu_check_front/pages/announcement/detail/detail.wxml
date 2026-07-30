@@ -1,0 +1,34 @@
+<view class="page-container">
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <block wx:if="{{!loading && announce}}">
+    <view class="card detail-card">
+      <view class="detail-header">
+        <view class="header-tags">
+          <text class="tag-type">{{announce.typeName}}</text>
+          <text class="tag-top" wx:if="{{announce.isTop}}">置顶</text>
+        </view>
+        <text class="detail-title">{{announce.title}}</text>
+        <view class="detail-meta">
+          <text class="meta-item" wx:if="{{announce.department}}">{{announce.department}}</text>
+          <text class="meta-item">{{announce.createdAt}}</text>
+          <text class="meta-item">{{announce.readCount}}人已读</text>
+        </view>
+      </view>
+
+      <view class="detail-summary" wx:if="{{announce.summary}}">
+        <text>{{announce.summary}}</text>
+      </view>
+
+      <view class="detail-content" wx:if="{{announce.content}}">
+        <text>{{announce.content}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if="{{!loading && !announce}}" class="loading">
+    <text>公告不存在</text>
+  </view>
+</view>

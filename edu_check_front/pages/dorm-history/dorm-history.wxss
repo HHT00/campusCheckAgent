@@ -1,0 +1,75 @@
+.history-page {
+  padding: 16px;
+  min-height: 100vh;
+}
+
+.summary-bar {
+  padding: 10px 16px;
+  background: #F0F2F5;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.summary-text {
+  font-size: 13px;
+  color: #7F8C8D;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.record-left {
+  margin-right: 14px;
+}
+
+.record-date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.record-day {
+  font-size: 13px;
+  color: #2C3E50;
+  font-weight: 600;
+}
+
+.record-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.record-time {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.record-addr {
+  font-size: 12px;
+  color: #95A5A6;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 160px;
+}
+
+.load-more {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 13px;
+  color: #BDC3C7;
+}
+
+.scroll-trigger {
+  height: 1px;
+}

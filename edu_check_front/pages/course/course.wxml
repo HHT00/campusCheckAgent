@@ -1,0 +1,162 @@
+<view class="page-container">
+  <view wx:if="{{isTeacher}}">
+    <!-- 教师端 -->
+    <view class="page-header">
+      <text class="page-title">📚 上课打卡</text>
+    </view>
+
+    <view class="card teacher-panel-card" bindtap="goDynamicCode" hover-class="feature-hover">
+      <view class="teacher-panel-icon">🔑</view>
+      <view class="teacher-panel-info">
+        <text class="teacher-panel-title">动态码管理</text>
+      </view>
+      <view class="teacher-panel-arrow">›</view>
+    </view>
+
+    <view class="card teacher-panel-card" bindtap="goStudents" hover-class="feature-hover">
+      <view class="teacher-panel-icon">📊</view>
+      <view class="teacher-panel-info">
+        <text class="teacher-panel-title">签到监控</text>
+      </view>
+      <view class="teacher-panel-arrow">›</view>
+    </view>
+  </view>
+
+  <block wx:if="{{!isTeacher}}">
+    <!-- 学生端（原有内容） -->
+    <view class="page-header">
+      <text class="page-title">📚 上课打卡</text>
+    </view>
+
+    <!-- 今日课程 -->
+    <view class="card course-card" wx:if="{{courseList.length > 0}}">
+      <view class="card-title-row">
+        <text class="card-title">📖 今日课程</text>
+      </view>
+      <view class="course-item" wx:for="{{courseList}}" wx:for-item="course" wx:key="id"
+            data-id="{{course.id}}" bindtap="onCourseTap">
+        <view class="course-top">
+          <view class="course-icon-bg">
+            <text class="course-icon">📖</text>
+          </view>
+          <view class="course-info">
+            <text class="course-name">{{course.name}}</text>
+            <text class="course-teacher">{{course.teacher}}</text>
+          </view>
+          <text class="tag {{course.checkinStatus === 'present' ? 'tag-success' : (course.checkinStatus === 'late' ? 'tag-warning' : (course.checkinStatus === 'absent' ? 'tag-danger' : (course.checkinStatus === 'ready' ? 'tag-success' : 'tag-primary')))}}">
+            {{course.checkinStatus === 'present' ? '已签到' : (course.checkinStatus === 'late' ? '迟到' : (course.checkinStatus === 'absent' ? '旷课' : (course.checkinStatus === 'ready' ? '可签到' : '未开始')))}}
+          </text>
+        </view>
+        <view class="course-detail">
+          <view class="course-detail-item">
+            <text class="detail-icon">📍</text>
+            <text>{{course.location}}</text>
+          </view>
+          <view class="course-detail-item">
+            <text class="detail-icon">⏰</text>
+            <text>{{course.startTime}}-{{course.endTime}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="card" wx:else>
+      <view class="empty-tip">今天没有课程安排 🎉</view>
+    </view>
+
+    <!-- 签到区域（已签到后可重新签到覆盖数据） -->
+    <view class="card checkin-card" wx:if="{{selectedCourse && (selectedCourse.checkinStatus === 'ready' || selectedCourse.checkinStatus === 'present' || selectedCourse.checkinStatus === 'late') && !loading}}">
+      <view class="card-title-row">
+        <text class="card-title">✅ 签到 - {{selectedCourse.name}}</text>
+        <text class="tag {{checkedInStatus === 'present' ? 'tag-success' : (checkedInStatus === 'late' ? 'tag-warning' : '')}}" wx:if="{{checkedIn}}">
+          {{checkedInStatus === 'present' ? '已签到' : '已迟到'}}
+        </text>
+      </view>
+
+      <!-- 定位 -->
+      <view class="section-block">
+        <text class="section-label">📍 定位签到</text>
+        <view class="location-display">
+          <view class="location-placeholder" wx:if="{{!locationChecked}}" bindtap="getLocation">
+            <text class="loc-icon">🗺️</text>
+          </view>
+          <view class="location-result" wx:if="{{!locationChecked}}">
+            <text class="detail-hint">请点击上方进行定位</text>
+          </view>
+          <view class="location-result" wx:else>
+            <text class="loc-result-text success">✓ 定位成功</text>
+            <text class="detail-addr" wx:if="{{locationAddr}}">{{locationAddr}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 人脸验证 -->
+      <view class="section-block">
+        <text class="section-label">😀 人脸验证</text>
+        <view class="face-action" wx:if="{{!facePhotoUrl && !faceVerifying}}" bindtap="startFaceCheck">
+          <view class="face-camera-icon">
+            <text>📷</text>
+          </view>
+          <text class="face-action-text">点击拍照验证</text>
+        </view>
+        <view class="face-verifying" wx:if="{{faceVerifying}}">
+          <text class="face-verify-msg">⏳ 人脸验证中...</text>
+        </view>
+        <view class="face-photo-row" wx:if="{{facePhotoUrl && !faceVerifying}}">
+          <image class="face-photo-thumb" src="{{facePhotoUrl}}" mode="aspectFill" />
+          <view class="face-result {{faceVerified ? 'pass' : 'fail'}}">
+            <text class="face-result-text">{{faceVerifyMsg}}</text>
+            <text class="face-retake" wx:if="{{true}}" bindtap="startFaceCheck">重新拍照</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 动态码 -->
+      <view class="section-block">
+        <text class="section-label">🔑 动态码</text>
+        <input class="dynamic-code-input" type="text" placeholder="请输入教师提供的动态码（选填）"
+               value="{{dynamicCode}}" bindinput="onDynamicCodeInput" maxlength="10" />
+      </view>
+
+      <!-- 提交按钮 -->
+      <button class="btn-primary {{!(locationChecked && faceVerified) ? 'btn-disabled' : ''}}"
+              disabled="{{!(locationChecked && faceVerified)}}"
+              bindtap="doClassCheckin"
+              loading="{{submitting}}">
+        {{submitting ? '提交中...' : (checkedIn ? '重新签到' : '确认签到')}}
+      </button>
+    </view>
+
+    <view class="card" wx:elif="{{selectedCourse && (selectedCourse.checkinStatus === 'absent') && !loading}}">
+      <view class="empty-tip">
+        ⏰ {{selectedCourse.name}}
+        <text style="color:#E74C3C;display:block;margin-top:8rpx;">已旷课（未在规定时间内签到）</text>
+      </view>
+    </view>
+
+    <view class="card" wx:elif="{{selectedCourse && (selectedCourse.checkinStatus === 'waiting') && !loading}}">
+      <view class="empty-tip">
+        ⏳ {{selectedCourse.name}}
+        <text style="color:#3498DB;display:block;margin-top:8rpx;">签到尚未开放（上课前10分钟方可签到）</text>
+      </view>
+    </view>
+
+    <!-- 签到记录 -->
+    <view class="card history-card">
+      <view class="history-header">
+        <text class="history-title">📋 近期签到记录</text>
+        <text class="history-more" bindtap="viewAllHistory">查看全部 ›</text>
+      </view>
+      <view class="history-list">
+        <view class="history-item" wx:for="{{history}}" wx:for-item="item" wx:key="index">
+          <view class="history-left">
+            <text class="history-course">{{item.courseName || '课程签到'}}</text>
+            <text class="history-date">{{item.date}} {{item.checkinTime ? item.checkinTime.split(' ')[1] : ''}}</text>
+          </view>
+          <text class="tag {{item.status === 'present' ? 'tag-success' : (item.status === 'late' ? 'tag-warning' : 'tag-danger')}}">
+            {{item.status === 'present' ? '已签到' : (item.status === 'late' ? '迟到' : '缺勤')}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

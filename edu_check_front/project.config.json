@@ -1,0 +1,72 @@
+{
+  "description": "校园考勤助手 - 学生考勤管理小程序",
+  "packOptions": {
+    "ignore": [
+      {
+        "value": "优化",
+        "type": "folder"
+      },
+      {
+        "value": "轮播图",
+        "type": "folder"
+      },
+      {
+        "value": "首页头像",
+        "type": "folder"
+      }
+    ],
+    "include": []
+  },
+  "setting": {
+    "bundle": false,
+    "userConfirmedBundle": false,
+    "urlCheck": true,
+    "scopeDataCheck": false,
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "autoAudits": false,
+    "newFeature": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "useIsolateContext": true,
+    "nodeModules": false,
+    "enhance": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmManually": false,
+    "enableEngp": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "showES6CompileOption": false,
+    "minifyWXML": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "compileWorklet": false,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.16.1",
+  "appid": "wxc0c21987135561b4",
+  "projectname": "校园考勤助手",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "simulatorPluginLibVersion": {}
+}

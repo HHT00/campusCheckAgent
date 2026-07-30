@@ -1,0 +1,257 @@
+/* 请假页面样式 */
+
+.page-header {
+  margin-bottom: 20rpx;
+}
+
+/* 快捷申请 */
+.quick-apply {
+  display: flex;
+  align-items: center;
+  padding: 28rpx;
+  background: #EBF0FA;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20rpx;
+}
+
+.quick-apply:active {
+  opacity: 0.85;
+}
+
+.apply-left {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  font-size: 36rpx;
+}
+
+.apply-center {
+  flex: 1;
+}
+
+.apply-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2C3E50;
+}
+
+.apply-arrow {
+  font-size: 40rpx;
+  color: #95A5A6;
+}
+
+/* 统计行 */
+.stats-row {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 8rpx;
+  margin-bottom: 0;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: 800;
+  margin-bottom: 4rpx;
+}
+
+.stat-label {
+  font-size: 20rpx;
+  color: #95A5A6;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 4rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.filter-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 24rpx;
+  color: #7F8C8D;
+  border-radius: 12rpx;
+  transition: all 0.2s;
+}
+
+.filter-tab.active {
+  background: #E74C3C;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 请假列表 */
+.leave-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.leave-item {
+  padding: 28rpx;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.leave-item:active {
+  transform: scale(0.99);
+}
+
+.leave-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.leave-type-tag {
+  padding: 6rpx 20rpx;
+  border-radius: 12rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.leave-type-tag.sick {
+  background: #FDEDEC;
+  color: #E74C3C;
+}
+
+.leave-type-tag.personal {
+  background: #FEF5E7;
+  color: #F39C12;
+}
+
+.leave-type-tag.official {
+  background: #EBF0FA;
+  color: #3498DB;
+}
+
+.leave-type-tag.annual {
+  background: #E8F8F5;
+  color: #00B894;
+}
+
+.leave-status {
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.leave-status.status-pending {
+  color: #F39C12;
+}
+
+.leave-status.status-approved {
+  color: #00B894;
+}
+
+.leave-status.status-rejected {
+  color: #E74C3C;
+}
+
+.leave-time, .leave-reason {
+  display: flex;
+  margin-bottom: 12rpx;
+}
+
+.leave-label {
+  font-size: 24rpx;
+  color: #95A5A6;
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.leave-value {
+  flex: 1;
+  font-size: 24rpx;
+  color: #2C3E50;
+  line-height: 1.5;
+}
+
+.leave-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #F5F5F5;
+}
+
+.leave-submit-time {
+  font-size: 22rpx;
+  color: #BDC3C7;
+}
+
+.leave-days {
+  font-size: 22rpx;
+  color: #3498DB;
+  font-weight: 600;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.load-more-text {
+  font-size: 24rpx;
+  color: #95A5A6;
+}
+
+/* 教师端卡片 */
+.teacher-leave-card {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+.teacher-leave-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  background: #EBF0FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+.teacher-leave-info {
+  flex: 1;
+}
+.teacher-leave-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2C3E50;
+}
+.teacher-leave-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+.teacher-leave-arrow {
+  font-size: 36rpx;
+  color: #ccc;
+}
+.feature-hover {
+  opacity: 0.8;
+}

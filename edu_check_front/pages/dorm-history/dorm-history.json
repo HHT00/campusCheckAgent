@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "查寝打卡记录",
+  "navigationBarBackgroundColor": "#2C3E50",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}

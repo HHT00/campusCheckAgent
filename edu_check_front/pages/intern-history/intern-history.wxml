@@ -1,0 +1,38 @@
+<page class="page-container">
+  <view class="history-page">
+    <view class="summary-bar">
+      <text class="summary-text">共 {{total}} 次实习打卡</text>
+    </view>
+
+    <view class="record-list">
+      <view class="record-item" wx:for="{{recordList}}" wx:key="id">
+        <view class="record-left">
+          <text class="record-day-num">第{{item.day}}天</text>
+        </view>
+        <view class="record-center">
+          <view class="record-date-row">
+            <text class="record-date">{{item.date}}</text>
+            <text class="record-time">{{item.time}}</text>
+          </view>
+          <text class="record-log">{{item.log}}</text>
+          <view class="record-photos" wx:if="{{item.photos && item.photos.length > 0}}">
+            <image class="record-photo" wx:for="{{item.photos}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
+          </view>
+        </view>
+        <text class="tag tag-success">{{item.status}}</text>
+      </view>
+    </view>
+
+    <view class="load-more" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+    <view class="load-more" wx:elif="{{!hasMore && recordList.length > 0}}">
+      <text>— 已显示全部记录 —</text>
+    </view>
+    <view class="load-more" wx:elif="{{!loading && recordList.length === 0}}">
+      <text>暂无打卡记录</text>
+    </view>
+
+    <view class="scroll-trigger" bindtap="loadMore" wx:if="{{hasMore && !loading}}"></view>
+  </view>
+</page>

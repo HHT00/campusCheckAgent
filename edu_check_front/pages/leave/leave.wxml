@@ -1,0 +1,106 @@
+<view class="page-container">
+  <view wx:if="{{isTeacher}}">
+    <view class="page-header">
+      <text class="page-title">📋 请假审批</text>
+    </view>
+
+    <view class="card teacher-leave-card" bindtap="goLeaveApprove" hover-class="feature-hover">
+      <view class="teacher-leave-icon">📝</view>
+      <view class="teacher-leave-info">
+        <text class="teacher-leave-title">进入审批</text>
+      </view>
+      <view class="teacher-leave-arrow">›</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!isTeacher}}">
+    <!-- 学生端：请假管理（原有内容） -->
+    <view class="page-header">
+      <text class="page-title">📋 请假管理</text>
+    </view>
+
+    <!-- 快捷操作 -->
+    <view class="quick-apply card" bindtap="applyLeave">
+      <view class="apply-left">
+        <text class="apply-icon">✏️</text>
+      </view>
+      <view class="apply-center">
+        <text class="apply-title">提交请假申请</text>
+      </view>
+      <view class="apply-arrow">
+        <text>›</text>
+      </view>
+    </view>
+
+    <!-- 统计卡片 -->
+    <view class="stats-row">
+      <view class="stat-item card">
+        <text class="stat-num" style="color: #3498DB">{{stats.total}}</text>
+        <text class="stat-label">总申请</text>
+      </view>
+      <view class="stat-item card">
+        <text class="stat-num" style="color: #F39C12">{{stats.pending}}</text>
+        <text class="stat-label">审批中</text>
+      </view>
+      <view class="stat-item card">
+        <text class="stat-num" style="color: #00B894">{{stats.approved}}</text>
+        <text class="stat-label">已通过</text>
+      </view>
+      <view class="stat-item card">
+        <text class="stat-num" style="color: #E74C3C">{{stats.rejected}}</text>
+        <text class="stat-label">已驳回</text>
+      </view>
+    </view>
+
+    <!-- 快速筛选 -->
+    <view class="filter-bar">
+      <view class="filter-tab {{filterType === 'all' ? 'active' : ''}}" bindtap="switchFilter" data-type="all">
+        <text>全部</text>
+      </view>
+      <view class="filter-tab {{filterType === 'pending' ? 'active' : ''}}" bindtap="switchFilter" data-type="pending">
+        <text>审批中</text>
+      </view>
+      <view class="filter-tab {{filterType === 'approved' ? 'active' : ''}}" bindtap="switchFilter" data-type="approved">
+        <text>已通过</text>
+      </view>
+      <view class="filter-tab {{filterType === 'rejected' ? 'active' : ''}}" bindtap="switchFilter" data-type="rejected">
+        <text>已驳回</text>
+      </view>
+    </view>
+
+    <!-- 请假记录 -->
+    <view class="leave-list">
+      <view class="card leave-item" wx:for="{{leaveList}}" wx:for-item="item" wx:key="id" bindtap="viewLeaveDetail" data-id="{{item.id}}">
+        <view class="leave-top">
+          <view class="leave-type-tag {{item.typeClass}}">
+            <text>{{item.typeName}}</text>
+          </view>
+          <text class="leave-status {{item.statusClass}}">{{item.statusName}}</text>
+        </view>
+        <view class="leave-time">
+          <text class="leave-label">📅 请假时段</text>
+          <text class="leave-value">{{item.startDate}} ~ {{item.endDate}}</text>
+        </view>
+        <view class="leave-reason">
+          <text class="leave-label">📝 请假事由</text>
+          <text class="leave-value">{{item.reason}}</text>
+        </view>
+        <view class="leave-footer">
+          <text class="leave-submit-time">提交于 {{item.submitTime}}</text>
+          <text class="leave-days">{{item.days}}天</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{leaveList.length === 0}}">
+      <text>📭</text>
+      <text>暂无请假记录</text>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{leaveList.length > 0}}" bindtap="loadMore">
+      <text class="load-more-text">{{hasMore ? '加载更多' : '没有更多了'}}</text>
+    </view>
+  </view>
+</view>

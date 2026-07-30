@@ -1,0 +1,194 @@
+/* 人脸录入页面样式 */
+.face-page {
+  padding: 20px 16px;
+  min-height: 100vh;
+}
+
+/* 状态卡片 */
+.status-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+}
+
+.status-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+.status-icon.registered {
+  background: #00B894;
+}
+
+.status-icon.unregistered {
+  background: #E74C3C;
+}
+
+.status-icon .iconfont {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.status-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.status-desc {
+  font-size: 12px;
+  color: #95A5A6;
+  margin-top: 4px;
+}
+
+/* 拍照区域 */
+.photo-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+}
+
+.section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.section-tip {
+  font-size: 12px;
+  color: #95A5A6;
+  font-weight: normal;
+  margin-top: 4px;
+}
+
+.photo-preview {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px dashed #E74C3C;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+}
+
+.retake-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 6px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 12px;
+}
+
+.photo-btn {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  border: 2px dashed #E74C3C;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFF5F5;
+  cursor: pointer;
+}
+
+.camera-icon text {
+  font-size: 48px;
+}
+
+.photo-btn-text {
+  font-size: 15px;
+  color: #E74C3C;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.photo-btn-tip {
+  font-size: 12px;
+  color: #95A5A6;
+  margin-top: 4px;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  margin-bottom: 16px;
+}
+
+.loading-btn {
+  background: #CCC !important;
+}
+
+/* 结果提示 */
+.result-tip {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.result-tip.success {
+  background: #E8F8F5;
+  color: #00B894;
+  border: 1px solid #A3E4D7;
+}
+
+.result-tip.fail {
+  background: #FDEDEC;
+  color: #E74C3C;
+  border: 1px solid #F5B7B1;
+}
+
+/* 温馨提示 */
+.tips-card {
+  background: #FFF9E6;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #FCE4A8;
+}
+
+.tips-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8B6914;
+  margin-bottom: 10px;
+}
+
+.tip-item {
+  font-size: 13px;
+  color: #6B5B3E;
+  line-height: 1.8;
+}

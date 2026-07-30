@@ -1,0 +1,45 @@
+.page-container {
+  padding: 30rpx;
+}
+.form-card {
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+.form-group {
+  margin-bottom: 28rpx;
+}
+.form-label {
+  font-size: 28rpx;
+  color: #2C3E50;
+  display: block;
+  margin-bottom: 12rpx;
+  font-weight: 500;
+}
+.picker-value {
+  background: #F5F7FA;
+  border-radius: 10rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: #2C3E50;
+}
+.form-textarea {
+  background: #F5F7FA;
+  border-radius: 10rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+  height: 200rpx;
+}
+.btn-submit {
+  background: #E74C3C;
+  color: #fff;
+  font-size: 32rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  border: none;
+  text-align: center;
+}
+.btn-submit[disabled] {
+  opacity: 0.6;
+}

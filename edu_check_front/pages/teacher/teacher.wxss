@@ -1,0 +1,201 @@
+/* 教师工作台 — 新设计系统 */
+
+.page-header {
+  margin-bottom: var(--space-lg);
+}
+
+/* ---------- 指标卡片 ---------- */
+.teacher-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+.t-metric {
+  text-align: center;
+  padding: var(--space-lg);
+  margin-bottom: 0;
+  border-left: 4rpx solid var(--gray-300);
+  transition: transform 0.15s;
+}
+.t-metric:nth-child(1) { border-left-color: var(--info); }
+.t-metric:nth-child(2) { border-left-color: var(--success); }
+.t-metric:nth-child(3) { border-left-color: var(--danger); }
+.t-metric:nth-child(4) { border-left-color: var(--warning); }
+.t-hover {
+  transform: translateY(-4rpx);
+}
+.t-value {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 800;
+  color: var(--gray-800);
+  line-height: 1.2;
+}
+.t-label {
+  display: block;
+  font-size: var(--font-xs);
+  color: var(--gray-400);
+  margin-top: 4rpx;
+}
+
+.section-more { font-size: var(--font-xs); color: var(--info); font-weight: 400; }
+/* ---------- 预警 ---------- */
+.alert-stack {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+}
+.alert-row {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  gap: var(--space-md);
+  border-bottom: 1px solid var(--gray-100);
+}
+.alert-row:last-child { border-bottom: none; }
+.alert-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.alert-dot.danger { background: var(--danger); }
+.alert-dot.warn { background: var(--warning); }
+.alert-body { flex: 1; }
+.alert-title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--gray-800);
+  display: block;
+}
+.alert-desc {
+  font-size: var(--font-xs);
+  color: var(--gray-400);
+  margin-top: 2rpx;
+  display: block;
+}
+
+/* ---------- 趋势 ---------- */
+.trend-card { padding: var(--space-lg); }
+.trend-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+.trend-row:last-child { margin-bottom: 0; }
+.trend-day {
+  width: 70rpx;
+  font-size: var(--font-xs);
+  color: var(--gray-500);
+  flex-shrink: 0;
+}
+.trend-bar-bg {
+  flex: 1;
+  height: 24rpx;
+  background: var(--gray-100);
+  border-radius: 12rpx;
+  margin: 0 var(--space-md);
+  overflow: hidden;
+}
+.trend-bar-fill {
+  height: 100%;
+  border-radius: 12rpx;
+  min-width: 4rpx;
+  transition: width 0.4s ease;
+}
+.trend-rate {
+  width: 56rpx;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--gray-600);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ---------- 导出 ---------- */
+.export-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  margin-top: var(--space-lg);
+  background: var(--gray-50);
+  border-radius: var(--radius-xl);
+  border: 1px dashed var(--gray-300);
+}
+.export-icon { font-size: 28rpx; }
+.export-text { font-size: var(--font-sm); color: var(--gray-500); }
+.export-sub { font-size: var(--font-xs); color: var(--gray-400); margin-left: var(--space-sm); }
+
+/* ---------- 分析卡片 ---------- */
+.analysis-card {
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+.analysis-header {
+  margin-bottom: var(--space-md);
+}
+.analysis-title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--gray-700);
+}
+.analysis-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-md);
+  gap: var(--space-md);
+}
+.analysis-row:last-child { margin-bottom: 0; }
+.analysis-rank {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 8rpx;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--gray-500);
+  flex-shrink: 0;
+}
+.analysis-body { flex: 1; min-width: 0; }
+.analysis-name {
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--gray-700);
+  display: block;
+}
+.analysis-desc {
+  font-size: var(--font-xs);
+  color: var(--gray-400);
+  display: block;
+  margin-top: 2rpx;
+}
+.analysis-bar-bg {
+  height: 20rpx;
+  background: var(--gray-100);
+  border-radius: 10rpx;
+  margin-top: 6rpx;
+  overflow: hidden;
+}
+.analysis-bar-fill {
+  height: 100%;
+  border-radius: 10rpx;
+  min-width: 4rpx;
+}
+.analysis-rate {
+  width: 80rpx;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  text-align: right;
+  flex-shrink: 0;
+}
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger { color: var(--danger); }

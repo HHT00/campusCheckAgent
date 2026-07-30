@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "实习打卡记录",
+  "navigationBarBackgroundColor": "#00B894",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}

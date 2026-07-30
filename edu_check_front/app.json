@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/announcement/announcement",
+    "pages/leave/leave",
+    "pages/dorm/dorm",
+    "pages/course/course",
+    "pages/intern/intern",
+    "pages/user/user",
+    "pages/face/face",
+    "pages/dorm-history/dorm-history",
+    "pages/course-history/course-history",
+    "pages/intern-history/intern-history",
+    "pages/schedule/schedule",
+    "pages/teacher/teacher",
+    "pages/teacher/students",
+    "pages/teacher/student-detail",
+    "pages/teacher/leave-approve",
+    "pages/teacher/announce-publish",
+    "pages/teacher/dynamic-code",
+    "pages/leave/apply/apply",
+    "pages/leave/detail/detail",
+    "pages/user/edit-profile/edit-profile",
+    "pages/announcement/detail/detail",
+    "pages/feedback/feedback",
+    "pages/qa/qa",
+    "pages/teacher/unanswered/unanswered",
+    "pages/teacher/alert/alert"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "校园考勤助手",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F7FA",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#E74C3C",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab_home.png",
+        "selectedIconPath": "images/tab_home_active.png"
+      },
+      {
+        "pagePath": "pages/announcement/announcement",
+        "text": "公告",
+        "iconPath": "images/tab_announce.png",
+        "selectedIconPath": "images/tab_announce_active.png"
+      },
+      {
+        "pagePath": "pages/leave/leave",
+        "text": "请假",
+        "iconPath": "images/tab_leave.png",
+        "selectedIconPath": "images/tab_leave_active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/tab_user.png",
+        "selectedIconPath": "images/tab_user_active.png"
+      }
+    ]
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于打卡签到定位"
+    },
+    "scope.camera": {
+      "desc": "相机权限将用于人脸识别打卡"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

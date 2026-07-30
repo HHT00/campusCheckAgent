@@ -1,0 +1,60 @@
+<view class="page-container">
+  <!-- 选择课程 -->
+  <view class="card section">
+    <view class="form-group">
+      <text class="form-label">选择课程</text>
+      <picker value="{{selectedCourseIndex}}" range="{{courses}}" range-key="name" bindchange="onCourseChange">
+        <view class="picker-value {{selectedCourseId ? '' : 'placeholder'}}">
+          {{selectedCourseName || '请选择需要签到课程'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <block wx:if="{{selectedCourseId}}">
+    <!-- 有效期设置 -->
+    <view class="card section">
+      <view class="form-group">
+        <text class="form-label">动态码有效期</text>
+        <picker value="{{durationIndex}}" range="{{durationOptions}}" range-key="label" bindchange="setDuration">
+          <view class="picker-value">{{duration}}秒</view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- 生成按钮 -->
+    <button class="btn-generate {{generating ? 'loading' : ''}}" bindtap="generateCode" disabled="{{generating}}">
+      {{generating ? '生成中...' : '🎯 生成动态码'}}
+    </button>
+
+    <!-- 动态码展示 -->
+    <view class="card code-card" wx:if="{{dynamicCode}}">
+      <view class="code-label">当前动态码</view>
+      <view class="code-display {{expired ? 'expired' : ''}}">
+        <text class="code-text">{{dynamicCode}}</text>
+      </view>
+
+      <view class="code-info">
+        <text class="code-session">会话: {{sessionId}}</text>
+        <text class="code-course">课程: {{selectedCourseName}}</text>
+      </view>
+
+      <view class="code-countdown">
+        <text class="countdown-text {{expired ? 'text-danger' : 'text-success'}}">
+          {{expired ? '已过期' : ('剩余 ' + countdown + ' 秒')}}
+        </text>
+      </view>
+
+      <view class="code-actions">
+        <button class="btn-refresh" bindtap="generateCode">刷新动态码</button>
+      </view>
+    </view>
+
+  </block>
+
+  <block wx:if="{{!selectedCourseId}}">
+    <view class="card hint-card" style="text-align: center; padding: 40rpx;">
+      <text class="hint-text" style="color: #999;">请先选择课程</text>
+    </view>
+  </block>
+</view>

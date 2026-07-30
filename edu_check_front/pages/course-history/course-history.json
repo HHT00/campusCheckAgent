@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "上课签到记录",
+  "navigationBarBackgroundColor": "#3498DB",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}

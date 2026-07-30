@@ -1,0 +1,403 @@
+/* 上课打卡页面样式 */
+
+.page-header {
+  margin-bottom: 24rpx;
+}
+
+/* 课程信息 */
+.course-card {
+  padding: 28rpx;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2C3E50;
+}
+
+.course-item {
+  margin-bottom: 16rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.course-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.course-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.course-icon-bg {
+  width: 72rpx;
+  height: 72rpx;
+  background: #FEF5E7;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.course-icon {
+  font-size: 36rpx;
+}
+
+.course-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 2rpx;
+}
+
+.course-teacher {
+  font-size: 24rpx;
+  color: #7F8C8D;
+}
+
+.course-detail {
+  background: #F8F9FA;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+}
+
+.course-detail-item {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #555;
+  margin-bottom: 8rpx;
+  gap: 8rpx;
+}
+
+.course-detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-icon {
+  font-size: 26rpx;
+  width: 36rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 40rpx 0;
+  font-size: 28rpx;
+  color: #95A5A6;
+}
+
+/* 签到卡片 */
+.checkin-card {
+  padding: 28rpx;
+}
+
+/* 分区块 */
+.section-block {
+  margin-bottom: 28rpx;
+}
+
+.section-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 16rpx;
+}
+
+/* 定位签到 */
+.location-display {
+  margin-bottom: 12rpx;
+}
+
+.location-placeholder {
+  width: 100%;
+  height: 120rpx;
+  background: #F8F9FA;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx dashed #D5D8DC;
+}
+
+.loc-icon {
+  font-size: 56rpx;
+}
+
+.location-result {
+  text-align: center;
+}
+
+.loc-result-text {
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.loc-result-text.success {
+  color: #00B894;
+}
+
+.detail-hint {
+  display: block;
+  font-size: 24rpx;
+  color: #95A5A6;
+  margin-top: 12rpx;
+  text-align: center;
+}
+
+.detail-addr {
+  display: block;
+  font-size: 24rpx;
+  color: #2C3E50;
+  margin-top: 8rpx;
+  padding: 8rpx 16rpx;
+  background: #F0F2F5;
+  border-radius: 12rpx;
+  word-break: break-all;
+}
+
+.loc-result-text.danger {
+  color: #E74C3C;
+}
+
+/* 签到记录 */
+.history-card {
+  padding: 28rpx;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.history-title {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.history-more {
+  font-size: 24rpx;
+  color: #3498DB;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-course {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 4rpx;
+}
+
+.history-date {
+  font-size: 22rpx;
+  color: #95A5A6;
+}
+
+/* 人脸验证卡片 */
+.face-card {
+  padding: 24rpx;
+  border: 2rpx solid #F0F0F0;
+}
+
+.face-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.face-card-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2C3E50;
+}
+
+.face-card-tip {
+  font-size: 22rpx;
+  color: #95A5A6;
+  margin-top: 4rpx;
+}
+
+.face-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx;
+  background: #FFF5F5;
+  border: 2rpx dashed #E74C3C;
+  border-radius: 16rpx;
+  cursor: pointer;
+}
+
+.face-camera-icon text {
+  font-size: 48rpx;
+}
+
+.face-action-text {
+  font-size: 26rpx;
+  color: #E74C3C;
+  margin-top: 8rpx;
+  font-weight: 600;
+}
+
+.face-verifying {
+  text-align: center;
+  padding: 24rpx;
+}
+
+.face-verify-msg {
+  font-size: 26rpx;
+  color: #3498DB;
+}
+
+.face-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.face-photo-thumb {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 12rpx;
+  border: 2rpx solid #E0E0E0;
+}
+
+.face-result {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.face-result-text {
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.face-result.pass .face-result-text {
+  color: #00B894;
+}
+
+.face-result.fail .face-result-text {
+  color: #E74C3C;
+}
+
+.face-retake {
+  font-size: 22rpx;
+  color: #3498DB;
+  margin-top: 4rpx;
+  text-decoration: underline;
+}
+
+/* 动态码输入框 */
+.dynamic-code-input {
+  width: 100%;
+  height: 80rpx;
+  background: #F8F9FA;
+  border: 2rpx solid #E0E0E0;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: #2C3E50;
+  box-sizing: border-box;
+}
+
+.dynamic-code-input::placeholder {
+  font-size: 24rpx;
+  color: #BDC3C7;
+}
+
+/* 教师端卡片 */
+.teacher-panel-card {
+  display: flex;
+  align-items: center;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+}
+.teacher-panel-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  background: #F3E5F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+.teacher-panel-info {
+  flex: 1;
+}
+.teacher-panel-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2C3E50;
+}
+.teacher-panel-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+.teacher-panel-arrow {
+  font-size: 36rpx;
+  color: #ccc;
+}
+.hint-card {
+  padding: 28rpx;
+  background: #FFF8E1;
+  margin-top: 10rpx;
+}
+.hint-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2C3E50;
+  display: block;
+  margin-bottom: 12rpx;
+}
+.hint-text {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.8;
+}
+.feature-hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,214 @@
+/* 公告页面样式 */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.publish-btn {
+  font-size: 26rpx;
+  color: #E74C3C;
+  padding: 8rpx 20rpx;
+  border: 2rpx solid #E74C3C;
+  border-radius: 10rpx;
+}
+.publish-btn:active {
+  opacity: 0.7;
+}
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 16rpx 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #2C3E50;
+}
+
+/* 分类标签滚动 */
+.category-scroll {
+  white-space: nowrap;
+  margin-bottom: 24rpx;
+}
+
+.category-list {
+  display: flex;
+  gap: 16rpx;
+  padding: 4rpx 0;
+}
+
+.category-tag {
+  display: inline-flex;
+  padding: 14rpx 28rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  font-size: 24rpx;
+  color: #7F8C8D;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+  transition: all 0.2s;
+}
+
+.category-tag.active {
+  background: #E74C3C;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 置顶公告 */
+.top-announce {
+  display: flex;
+  gap: 20rpx;
+  padding: 28rpx;
+  background: #FFF5F5;
+  border: 2rpx solid #FECACA;
+  cursor: pointer;
+}
+
+.top-announce:active {
+  opacity: 0.85;
+}
+
+.top-tag {
+  flex-shrink: 0;
+}
+
+.top-tag-text {
+  display: inline-block;
+  padding: 4rpx 16rpx;
+  background: #E74C3C;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 8rpx;
+  font-weight: 600;
+}
+
+.top-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.top-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2C3E50;
+}
+
+.top-summary {
+  font-size: 24rpx;
+  color: #7F8C8D;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.top-meta {
+  display: flex;
+  gap: 24rpx;
+  font-size: 22rpx;
+  color: #95A5A6;
+}
+
+/* 公告列表 */
+.announce-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.announce-item {
+  padding: 28rpx;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.announce-item:active {
+  transform: scale(0.99);
+  opacity: 0.9;
+}
+
+.announce-tag {
+  display: inline-flex;
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  font-weight: 500;
+  margin-bottom: 12rpx;
+}
+
+.announce-tag.notice {
+  background: #EBF0FA;
+  color: #3498DB;
+}
+
+.announce-tag.activity {
+  background: #FEF5E7;
+  color: #F39C12;
+}
+
+.announce-tag.academic {
+  background: #E8F8F5;
+  color: #00B894;
+}
+
+.announce-tag.policy {
+  background: #FDEDEC;
+  color: #E74C3C;
+}
+
+.announce-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 8rpx;
+}
+
+.announce-summary {
+  display: block;
+  font-size: 24rpx;
+  color: #7F8C8D;
+  line-height: 1.5;
+  margin-bottom: 16rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.announce-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: #BDC3C7;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.load-more-text {
+  font-size: 24rpx;
+  color: #95A5A6;
+}

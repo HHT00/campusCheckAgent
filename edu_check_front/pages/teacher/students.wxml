@@ -1,0 +1,49 @@
+<view class="page-container">
+  <view class="search-box">
+    <text class="search-icon">🔍</text>
+    <input class="search-input" placeholder="搜索学生姓名或学号..." bindinput="onSearch" />
+    <text class="search-btn" bindtap="exportCSV">📥</text>
+  </view>
+
+  <view class="toolbar">
+    <view class="toolbar-left">
+      <text wx:if="{{filterLabel}}" class="filter-tag" bindtap="clearFilter">{{filterLabel}} ×</text>
+      <text class="toolbar-count">共 {{students.length}} 人</text>
+    </view>
+    <text class="toolbar-refresh" bindtap="refresh">🔄</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+  <view wx:if="{{!loading && students.length === 0}}" class="empty-state"><text>暂无学生数据</text></view>
+
+  <view class="student-list">
+    <view class="card student-card" wx:for="{{students}}" wx:key="id" bindtap="viewStudent" data-id="{{item.id}}" hover-class="card-hover">
+      <view class="student-left">
+        <image src="/images/default_avatar.png" mode="aspectFill" class="s-avatar"></image>
+      </view>
+      <view class="student-mid">
+        <view class="s-name-row">
+          <text class="s-name">{{item.name}}</text>
+          <text class="s-id">{{item.studentId}}</text>
+        </view>
+        <text class="s-class">{{item.college || ''}} · {{item.major || ''}} · {{item.grade || ''}}</text>
+        <view class="s-tags">
+          <text class="tag {{item.todayCheckin === 'present' ? 'tag-success' : (item.todayCheckin === 'late' ? 'tag-warning' : 'tag-default')}}">
+            <text class="status-dot {{item.todayCheckin === 'present' ? 'success' : (item.todayCheckin === 'late' ? 'warning' : 'default')}}"></text>
+            上课 {{item.todayCheckin === 'present' ? '已签到' : (item.todayCheckin === 'late' ? '迟到' : '未签到')}}
+          </text>
+          <text class="tag {{item.todayDorm === 'normal' ? 'tag-success' : (item.todayDorm === 'late' ? 'tag-warning' : 'tag-default')}}">
+            <text class="status-dot {{item.todayDorm === 'normal' ? 'success' : (item.todayDorm === 'late' ? 'warning' : 'default')}}"></text>
+            查寝 {{item.todayDorm === 'normal' ? '已打卡' : (item.todayDorm === 'late' ? '晚归' : '未打卡')}}
+          </text>
+        </view>
+      </view>
+      <view class="student-right">
+        <text class="s-stat">{{item.classTotal || 0}}</text>
+        <text class="s-stat-label">上课</text>
+        <text class="s-stat" style="margin-top:6rpx;">{{item.dormTotal || 0}}</text>
+        <text class="s-stat-label">查寝</text>
+      </view>
+    </view>
+  </view>
+</view>

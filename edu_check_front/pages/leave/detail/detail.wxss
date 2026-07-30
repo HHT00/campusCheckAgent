@@ -1,0 +1,62 @@
+.page-container {
+  padding: 30rpx;
+}
+.loading {
+  text-align: center;
+  padding: 80rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+.detail-card {
+  padding: 30rpx;
+}
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.detail-type {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2C3E50;
+}
+.detail-status {
+  padding: 8rpx 24rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+.detail-status.pending {
+  background: #FFF3E0;
+  color: #F39C12;
+}
+.detail-status.approved {
+  background: #E8F5E9;
+  color: #00B894;
+}
+.detail-status.rejected {
+  background: #FFEBEE;
+  color: #E74C3C;
+}
+.detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+.detail-row {
+  display: flex;
+}
+.detail-label {
+  font-size: 26rpx;
+  color: #999;
+  width: 150rpx;
+  flex-shrink: 0;
+}
+.detail-value {
+  font-size: 26rpx;
+  color: #2C3E50;
+  flex: 1;
+}

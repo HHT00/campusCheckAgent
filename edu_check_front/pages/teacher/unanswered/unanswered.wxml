@@ -1,0 +1,25 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-row">
+      <view>
+        <text class="page-title">📋 未命中问题</text>
+        <text class="page-desc">以下问题是用户提问但知识库未匹配到的，可据此补充知识库</text>
+      </view>
+      <text class="page-export" bindtap="exportQuestions">📥 导出</text>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+
+  <view wx:if="{{!loading && list.length === 0}}" class="empty"><text>暂无未命中问题</text></view>
+
+  <view class="list">
+    <view class="card item" wx:for="{{list}}" wx:key="id">
+      <view class="item-row">
+        <text class="item-q">Q: {{item.question}}</text>
+        <text class="item-cat" wx:if="{{item.category}}">{{item.category}}</text>
+      </view>
+      <text class="item-time">{{item.createdAt}}</text>
+    </view>
+  </view>
+</view>

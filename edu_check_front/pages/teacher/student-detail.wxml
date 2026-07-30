@@ -1,0 +1,107 @@
+<view class="page-container">
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+
+  <block wx:if="{{!loading && student}}">
+    <!-- 风险预警（如果有） -->
+    <view class="card risk-card" wx:if="{{risk.level}}" data-level="{{risk.level}}">
+      <view class="risk-left {{risk.level}}"></view>
+      <view class="risk-body">
+        <text class="risk-title">{{risk.title}}</text>
+        <text class="risk-desc">{{risk.desc}}</text>
+      </view>
+    </view>
+
+    <!-- 基本信息 -->
+    <view class="card student-header">
+      <view class="student-avatar">
+        <image src="/images/default_avatar.png" mode="aspectFill" class="avatar-img"></image>
+      </view>
+      <view class="student-info">
+        <text class="student-name">{{student.name}}</text>
+        <text class="student-id-label">{{student.studentId}}</text>
+        <text class="student-college">{{student.college || ''}} · {{student.major || ''}} · {{student.grade || ''}}</text>
+      </view>
+    </view>
+
+    <!-- 统计数据 -->
+    <view class="stats-row">
+      <view class="card stat-item" style="border-left: 4rpx solid #3498DB;">
+        <text class="stat-num">{{stats.classTotal || 0}}</text>
+        <text class="stat-label">上课签到</text>
+      </view>
+      <view class="card stat-item" style="border-left: 4rpx solid #00B894;">
+        <text class="stat-num">{{stats.dormTotal || 0}}</text>
+        <text class="stat-label">查寝打卡</text>
+      </view>
+      <view class="card stat-item" style="border-left: 4rpx solid #F39C12;">
+        <text class="stat-num">{{stats.streakDays || 0}}</text>
+        <text class="stat-label">连续天数</text>
+      </view>
+      <view class="card stat-item" style="border-left: 4rpx solid #E74C3C;">
+        <text class="stat-num">{{stats.totalPoints || 0}}</text>
+        <text class="stat-label">总积分</text>
+      </view>
+    </view>
+
+    <!-- 近7天出勤趋势 -->
+    <view class="section-header">
+      <text class="section-title">近 7 天出勤</text>
+      <text class="section-action" bindtap="exportRecords">📥 导出</text>
+    </view>
+    <view class="card trend-card">
+      <view class="trend-row" wx:for="{{weekTrend}}" wx:key="index" wx:for-item="day">
+        <text class="trend-day">{{day.label}}</text>
+        <view class="trend-bar-wrap">
+          <view class="trend-bar {{day.status}}" style="width: {{day.width}}%;"></view>
+        </view>
+        <text class="trend-status {{day.status}}">{{day.text}}</text>
+      </view>
+    </view>
+
+    <!-- 今日状态 -->
+    <view class="section-header"><text class="section-title">今日上课签到</text></view>
+    <view wx:if="{{todayClasses.length === 0}}" class="empty-row">
+      <text>今日暂无上课记录</text>
+    </view>
+    <view class="card checkin-item" wx:for="{{todayClasses}}" wx:key="id" wx:for-item="cls">
+      <view class="checkin-status {{cls.status === 'present' ? 'status-present' : (cls.status === 'late' ? 'status-late' : 'status-absent')}}">
+        {{cls.status === 'present' ? '已签到' : (cls.status === 'late' ? '迟到' : '旷课')}}
+      </view>
+      <view class="checkin-meta">
+        <text>{{cls.courseName || '课程ID:' + cls.courseId}}</text>
+        <text wx:if="{{cls.checkinTime}}">时间: {{cls.checkinTime}}</text>
+      </view>
+    </view>
+
+    <view class="section-header"><text class="section-title">今日查寝打卡</text></view>
+    <view wx:if="{{!todayDorm}}" class="empty-row"><text>今日暂未查寝打卡</text></view>
+    <view class="card checkin-item" wx:if="{{todayDorm}}">
+      <view class="checkin-status {{todayDorm.status === 'normal' ? 'status-present' : 'status-late'}}">
+        {{todayDorm.status === 'normal' ? '已打卡' : '晚归'}}
+      </view>
+      <view class="checkin-meta">
+        <text wx:if="{{todayDorm.checkinTime}}">时间: {{todayDorm.checkinTime}}</text>
+        <text wx:if="{{todayDorm.locationAddr}}">位置: {{todayDorm.locationAddr}}</text>
+      </view>
+    </view>
+
+    <!-- 近期记录 -->
+    <view class="section-header"><text class="section-title">近期上课记录</text></view>
+    <view class="card record-item" wx:for="{{recentClassRecords}}" wx:key="id" wx:for-item="rc">
+      <text class="record-date">{{rc.date || '-'}}</text>
+      <text class="record-status {{rc.status === 'present' ? 'text-success' : (rc.status === 'late' ? 'text-warning' : 'text-danger')}}">
+        {{rc.status === 'present' ? '正常' : (rc.status === 'late' ? '迟到' : '旷课')}}
+      </text>
+      <text class="record-time">{{rc.checkinTime ? rc.checkinTime.substring(11, 19) : ''}}</text>
+    </view>
+
+    <view class="section-header"><text class="section-title">近期查寝记录</text></view>
+    <view class="card record-item" wx:for="{{recentDormRecords}}" wx:key="id" wx:for-item="rd">
+      <text class="record-date">{{rd.date || '-'}}</text>
+      <text class="record-status {{rd.status === 'normal' ? 'text-success' : 'text-warning'}}">
+        {{rd.status === 'normal' ? '正常' : '晚归'}}
+      </text>
+      <text class="record-time">{{rd.checkinTime ? rd.checkinTime.substring(11, 19) : ''}}</text>
+    </view>
+  </block>
+</view>

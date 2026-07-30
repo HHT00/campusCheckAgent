@@ -1,0 +1,75 @@
+<page class="page-container">
+  <view class="face-page">
+
+    <!-- 加载中 -->
+    <view class="loading-tip" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+
+    <!-- 人脸状态卡片 -->
+    <view class="status-card" wx:if="{{!loading}}">
+      <view class="status-icon {{registered ? 'registered' : 'unregistered'}}">
+        <text class="iconfont">{{registered ? '✓' : '✕'}}</text>
+      </view>
+      <view class="status-info">
+        <text class="status-title">{{registered ? '已录入人脸' : '未录入人脸'}}</text>
+        <text class="status-desc" wx:if="{{registered}}">
+          版本 V{{faceVersion}} | {{registeredAt}}
+        </text>
+        <text class="status-desc" wx:else>
+          录入人脸后方可使用打卡功能
+        </text>
+      </view>
+    </view>
+
+    <!-- 拍照区域 -->
+    <view class="photo-section">
+      <view class="section-title">
+        <text>拍摄正面人脸照片</text>
+        <text class="section-tip">请确保光线充足、面部清晰</text>
+      </view>
+
+      <!-- 拍照预览 -->
+      <view class="photo-preview" wx:if="{{photoTaken}}" bindtap="retakePhoto">
+        <image class="preview-img" src="{{photoUrl}}" mode="aspectFill" />
+        <view class="retake-hint">点击重新拍照</view>
+      </view>
+
+      <!-- 拍照按钮 -->
+      <view class="photo-btn" wx:else bindtap="takePhoto">
+        <view class="camera-icon">
+          <text>📷</text>
+        </view>
+        <text class="photo-btn-text">开始拍照</text>
+        <text class="photo-btn-tip">使用前置摄像头</text>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="btn-primary submit-btn"
+      wx:if="{{photoTaken && !submitting}}"
+      bindtap="submitFace"
+      disabled="{{submitting}}">
+      {{registered ? '更新人脸' : '录入人脸'}}
+    </button>
+
+    <!-- 加载中按钮 -->
+    <button class="btn-primary submit-btn loading-btn" wx:if="{{submitting}}" disabled>
+      处理中...
+    </button>
+
+    <!-- 结果提示 -->
+    <view class="result-tip {{resultSuccess ? 'success' : 'fail'}}" wx:if="{{resultVisible}}">
+      <text>{{resultMsg}}</text>
+    </view>
+
+    <!-- 温馨提示 -->
+    <view class="tips-card">
+      <view class="tips-title">📌 温馨提示</view>
+      <view class="tip-item">• 人脸数据仅用于身份验证</view>
+      <view class="tip-item">• 第二次录入会覆盖之前的人脸</view>
+      <view class="tip-item">• 打卡前需完成人脸验证</view>
+      <view class="tip-item">• 请使用本人真实照片</view>
+    </view>
+  </view>
+</page>

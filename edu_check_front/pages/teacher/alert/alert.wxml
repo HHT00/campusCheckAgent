@@ -1,0 +1,34 @@
+<view class="page-container">
+  <view class="page-header">
+    <text class="h1">⚠️ 预警中心</text>
+    <text class="caption">系统自动检测的考勤异常事件</text>
+  </view>
+
+  <view class="tabs">
+    <view class="tab {{tab === 'unresolved' ? 'active' : ''}}" bindtap="switchTab" data-tab="unresolved">未处理 ({{unresolvedCount}})</view>
+    <view class="tab {{tab === 'resolved' ? 'active' : ''}}" bindtap="switchTab" data-tab="resolved">已处理</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+
+  <block wx:if="{{!loading}}">
+    <view wx:if="{{list.length === 0}}" class="empty-state"><text>暂无预警</text></view>
+
+    <view class="alert-list">
+      <view class="card alert-card" wx:for="{{list}}" wx:key="id" wx:for-item="al">
+        <view class="alert-level {{al.riskLevel}}">
+          <text class="level-dot"></text>
+          <text class="level-text">{{al.riskLevel === 'high' ? '高危' : '关注'}}</text>
+        </view>
+        <view class="alert-body">
+          <text class="alert-title">{{al.title}}</text>
+          <text class="alert-detail">{{al.detail}}</text>
+          <text class="alert-time">{{al.createdAt ? al.createdAt.substring(0, 16) : ''}}</text>
+        </view>
+        <view class="alert-actions" wx:if="{{tab === 'unresolved'}}">
+          <view class="action-btn" bindtap="resolveAlert" data-id="{{al.id}}">标记处理</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

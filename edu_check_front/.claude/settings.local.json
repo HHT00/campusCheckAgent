@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from PIL import Image; print\\('PIL available'\\)\")",
+      "Read(//c/Users/52725/.claude/**)",
+      "Read(//c/Users/52725/.claude/projects/**)",
+      "Bash(python *)"
+    ]
+  }
+}

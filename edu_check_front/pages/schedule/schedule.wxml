@@ -1,0 +1,49 @@
+<page class="page-container">
+  <view class="schedule-page">
+
+    <!-- 头部信息 -->
+    <view class="schedule-header">
+      <text class="header-title">📅 计算机科学与技术学院</text>
+      <text class="header-sub">软件工程专业 2024级 | {{today}}</text>
+    </view>
+
+    <!-- 课表网格 -->
+    <view class="schedule-grid">
+      <!-- 表头 -->
+      <view class="grid-row grid-header">
+        <view class="grid-cell cell-time">节次\星期</view>
+        <view class="grid-cell cell-day" wx:for="{{weekDays}}" wx:key="*this"
+              data-day="{{item}}">
+          <text class="day-label">{{item}}</text>
+        </view>
+      </view>
+
+      <!-- 表体：四个时段 -->
+      <view class="grid-row" wx:for="{{['1-2','3-4','5-6','7-8']}}" wx:for-item="sec" wx:for-index="si" wx:key="*this">
+        <view class="grid-cell cell-time">
+          <text class="time-label">{{sec}}节</text>
+          <text class="time-hour">{{['08:00-09:40','10:00-11:40','14:00-15:40','16:00-17:40'][si]}}</text>
+        </view>
+        <view class="grid-cell cell-class" wx:for="{{weekDays}}" wx:for-item="day" wx:key="*this">
+          <view class="class-card" wx:for="{{weekSchedule}}" wx:for-item="c" wx:key="id"
+                wx:if="{{c.weekDay === day && c.section === sec}}">
+            <text class="class-name">{{c.name}}</text>
+            <text class="class-teacher">{{c.teacher}}</text>
+            <text class="class-location">{{c.location}}</text>
+          </view>
+          <view class="no-class" wx:if="{{!dayHasCourse(day)}}">—</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 课程统计 -->
+    <view class="stats-bar" wx:if="{{!loading}}">
+      <text class="stats-text">共 {{weekSchedule.length}} 门课程</text>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="load-more" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+  </view>
+</page>

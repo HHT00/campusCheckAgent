@@ -1,0 +1,67 @@
+<view class="page-container">
+
+  <!-- 学生：提交按钮 -->
+  <view wx:if="{{role !== 'teacher'}}">
+    <view class="card submit-entry" bindtap="showSubmitForm" hover-class="feature-hover">
+      <text class="submit-icon">✏️</text>
+      <text class="submit-text">提出意见或反馈问题</text>
+      <text class="submit-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 教师：标题 -->
+  <view wx:if="{{role === 'teacher'}}" class="page-header">
+    <text class="page-title">📋 学生意见反馈</text>
+  </view>
+
+  <!-- 列表 -->
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+
+  <view wx:if="{{!loading && list.length === 0}}" class="empty"><text>暂无反馈</text></view>
+
+  <view class="feedback-list">
+    <view class="card feedback-item" wx:for="{{list}}" wx:key="id">
+      <view class="feedback-top">
+        <text class="feedback-type {{item.type}}">{{item.typeName}}</text>
+        <text wx:if="{{role === 'teacher'}}" class="feedback-student">{{item.studentName}} · {{item.studentId}}</text>
+        <text class="feedback-time">{{item.createdAt}}</text>
+      </view>
+      <text class="feedback-content">{{item.content}}</text>
+      <text wx:if="{{item.contact}}" class="feedback-contact">联系方式: {{item.contact}}</text>
+    </view>
+  </view>
+
+  <!-- 提交弹窗 -->
+  <view class="form-overlay {{showForm ? 'show' : ''}}">
+    <view class="form-modal">
+      <view class="form-header">
+        <text class="form-title">提交反馈</text>
+        <text class="form-close" bindtap="hideForm">✕</text>
+      </view>
+      <scroll-view class="form-body" scroll-y>
+        <view class="form-group">
+          <text class="form-label">类型</text>
+          <picker value="{{typeIndex}}" range="{{typeOptions}}" range-key="name" bindchange="onTypeChange">
+            <view class="picker-value">{{form.typeName || '建议'}}</view>
+          </picker>
+        </view>
+        <view class="form-group">
+          <text class="form-label">反馈内容</text>
+          <view class="textarea-wrap">
+            <textarea class="form-textarea" placeholder="请详细描述您的意见或问题..." value="{{form.content}}" bindinput="onContentInput" />
+          </view>
+        </view>
+        <view class="form-group">
+          <text class="form-label">联系方式（选填）</text>
+          <view class="input-wrap">
+            <input class="form-input" placeholder="手机号或邮箱" value="{{form.contact}}" bindinput="onContactInput" />
+          </view>
+        </view>
+      </scroll-view>
+      <view class="form-footer">
+        <button class="btn-cancel" bindtap="hideForm">取消</button>
+        <button class="btn-submit" bindtap="submit" disabled="{{submitting}}">{{submitting ? '提交中...' : '提交'}}</button>
+      </view>
+    </view>
+  </view>
+</view>

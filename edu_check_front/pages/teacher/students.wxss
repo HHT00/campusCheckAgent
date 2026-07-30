@@ -1,0 +1,115 @@
+/* 学生管理 — 新设计系统 */
+
+/* ---------- 搜索 ---------- */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: var(--radius-xl);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  gap: var(--space-md);
+}
+.search-icon { font-size: 28rpx; }
+.search-input { flex: 1; font-size: var(--font-base); }
+.search-btn { font-size: 28rpx; color: var(--gray-400); padding: 8rpx; }
+
+/* ---------- 工具栏 ---------- */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: 1;
+  min-width: 0;
+}
+.toolbar-count {
+  font-size: var(--font-xs);
+  color: var(--gray-400);
+}
+.toolbar-refresh {
+  font-size: 28rpx;
+  color: var(--gray-400);
+  padding: 8rpx;
+}
+.filter-tag {
+  font-size: var(--font-xs);
+  color: var(--danger);
+  background: var(--danger-light);
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+/* ---------- 学生卡片 ---------- */
+.student-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.student-card {
+  display: flex;
+  align-items: center;
+  padding: var(--space-lg);
+  gap: var(--space-md);
+}
+.card-hover { opacity: 0.95; transform: scale(0.99); }
+.student-left { flex-shrink: 0; }
+.s-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.student-mid {
+  flex: 1;
+  min-width: 0;
+}
+.s-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-bottom: 4rpx;
+}
+.s-name {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--gray-800);
+}
+.s-id {
+  font-size: var(--font-xs);
+  color: var(--gray-400);
+}
+.s-class {
+  font-size: var(--font-xs);
+  color: var(--gray-500);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+.s-tags {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+.student-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: var(--space-sm);
+}
+.s-stat {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--gray-700);
+  line-height: 1.2;
+}
+.s-stat-label {
+  font-size: var(--font-xs);
+  color: var(--gray-400);
+}

@@ -1,0 +1,94 @@
+<view class="page-container">
+  <!-- 顶部操作栏 -->
+  <view class="toolbar">
+    <text class="toolbar-title">已发布公告</text>
+    <button class="btn-create" bindtap="showCreateForm">+ 发布公告</button>
+  </view>
+
+  <!-- 公告列表 -->
+  <view wx:if="{{loading && announceList.length === 0}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:if="{{!loading && announceList.length === 0}}" class="empty">
+    <text>暂无公告，点击上方按钮发布</text>
+  </view>
+
+  <view class="announce-list">
+    <view class="card announce-item" wx:for="{{announceList}}" wx:key="id">
+      <view class="announce-header">
+        <text class="announce-type">{{item.typeName}}</text>
+        <text class="announce-top" wx:if="{{item.isTop}}">置顶</text>
+      </view>
+      <text class="announce-title">{{item.title}}</text>
+      <text class="announce-summary">{{item.summary}}</text>
+      <view class="announce-footer">
+        <text class="announce-date">{{item.createdAt}}</text>
+        <text class="announce-reads">{{item.readCount || 0}}人已读</text>
+      </view>
+      <view class="announce-actions">
+        <text class="action-edit" bindtap="editAnnouncement" data-item="{{item}}">编辑</text>
+        <text class="action-delete" bindtap="deleteAnnouncement" data-id="{{item.id}}">删除</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布/编辑表单弹窗（模拟页面跳转） -->
+  <view class="form-overlay {{showForm ? 'show' : ''}}" catchtouchmove="preventDefault">
+    <view class="form-modal">
+      <view class="form-header">
+        <text class="form-title">{{editId ? '编辑公告' : '发布公告'}}</text>
+        <text class="form-close" bindtap="hideForm">✕</text>
+      </view>
+
+      <scroll-view class="form-body" scroll-y>
+        <view class="form-group">
+          <text class="form-label">公告类型</text>
+          <picker value="{{typeIndex}}" range="{{typeOptions}}" range-key="name" bindchange="onTypeChange">
+            <view class="picker-value">{{form.typeName || '请选择类型'}}</view>
+          </picker>
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">标题</text>
+          <view class="input-wrap">
+            <input class="form-input" placeholder="请输入公告标题" value="{{form.title}}" bindinput="onFieldChange" data-field="title" />
+          </view>
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">摘要</text>
+          <view class="textarea-wrap">
+            <textarea class="form-textarea" placeholder="请输入公告摘要" value="{{form.summary}}" bindinput="onFieldChange" data-field="summary" />
+          </view>
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">正文内容（可选）</text>
+          <view class="textarea-wrap">
+            <textarea class="form-textarea large" placeholder="请输入详细内容" value="{{form.content}}" bindinput="onFieldChange" data-field="content" />
+          </view>
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">发布部门</text>
+          <view class="input-wrap">
+            <input class="form-input" placeholder="如：党委学生工作部" value="{{form.department}}" bindinput="onFieldChange" data-field="department" />
+          </view>
+        </view>
+
+        <view class="form-group form-switch-group">
+          <text class="form-label">置顶公告</text>
+          <switch checked="{{form.isTop === 1}}" bindchange="onTopChange" color="#E74C3C" />
+        </view>
+      </scroll-view>
+
+      <view class="form-footer">
+        <button class="btn-cancel" bindtap="hideForm">取消</button>
+        <button class="btn-submit" bindtap="submitForm" disabled="{{submitting}}">
+          {{submitting ? '提交中...' : (editId ? '保存修改' : '发布')}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,49 @@
+<view class="page-container">
+  <view class="card form-card">
+    <view class="form-group">
+      <text class="form-label">姓名</text>
+      <view class="input-wrap">
+        <input class="form-input" placeholder="请输入姓名" value="{{form.name}}" bindinput="onFieldChange" data-field="name" />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">手机号</text>
+      <view class="input-wrap">
+        <input class="form-input" placeholder="请输入手机号" value="{{form.phone}}" bindinput="onFieldChange" data-field="phone" type="text" />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">邮箱</text>
+      <view class="input-wrap">
+        <input class="form-input" placeholder="请输入邮箱" value="{{form.email}}" bindinput="onFieldChange" data-field="email" type="text" />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">学院</text>
+      <view class="input-wrap">
+        <input class="form-input" placeholder="请输入学院" value="{{form.college}}" bindinput="onFieldChange" data-field="college" />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">专业</text>
+      <view class="input-wrap">
+        <input class="form-input" placeholder="请输入专业" value="{{form.major}}" bindinput="onFieldChange" data-field="major" />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">年级</text>
+      <view class="input-wrap">
+        <input class="form-input" placeholder="请输入年级" value="{{form.grade}}" bindinput="onFieldChange" data-field="grade" />
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-save" bindtap="save" disabled="{{saving}}">
+    {{saving ? '保存中...' : '保存'}}
+  </button>
+</view>

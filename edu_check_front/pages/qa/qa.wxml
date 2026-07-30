@@ -1,0 +1,54 @@
+<view class="page-container">
+  <!-- 分类标签 -->
+  <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="category-list">
+      <view class="category-tag {{category === item.value ? 'active' : ''}}" wx:for="{{categoryList}}" wx:key="value" bindtap="switchCategory" data-cat="{{item.value}}">
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 消息列表 -->
+  <scroll-view class="msg-list" scroll-y scroll-into-view="{{scrollTarget}}" scroll-with-animation>
+    <view wx:if="{{messages.length === 0}}" class="welcome">
+      <view class="welcome-icon">💡</view>
+      <text class="welcome-title">有什么可以帮助你的？</text>
+      <text class="welcome-desc">选择分类或直接输入问题</text>
+
+      <view class="hot-section" wx:if="{{hotList.length > 0}}">
+        <text class="hot-title">热门问题</text>
+        <view class="hot-item" wx:for="{{hotList}}" wx:key="id" bindtap="askQuestion" data-question="{{item.question}}">
+          <text class="hot-q">Q: {{item.question}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="msg-row {{item.role}}" wx:for="{{messages}}" wx:key="index" wx:for-index="idx">
+      <view class="msg-bubble">
+        <text class="msg-content">{{item.content}}</text>
+
+        <!-- 来源展示 -->
+        <view wx:if="{{item.sources && item.sources.length > 0}}" class="source-section">
+          <view class="source-toggle" bindtap="toggleSource" data-idx="{{idx}}">
+            <text class="source-toggle-text">{{expandedSources[idx] ? '收起参考来源 ▲' : '参考了 ' + item.sources.length + ' 条内容 ▼'}}</text>
+          </view>
+          <view wx:if="{{expandedSources[idx]}}" class="source-list">
+            <view class="source-item" wx:for="{{item.sources}}" wx:for-item="src" wx:key="id">
+              <text class="source-q">{{src.question}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view id="msg-bottom"></view>
+  </scroll-view>
+
+  <!-- 输入区 -->
+  <view class="input-bar">
+    <input class="input-field" placeholder="输入你的问题..." value="{{inputValue}}" bindinput="onInput" bindconfirm="send" confirm-type="send" />
+    <button class="send-btn {{searching ? 'loading' : ''}}" bindtap="send" disabled="{{searching || sendDisabled}}">
+      {{searching ? '...' : '发送'}}
+    </button>
+  </view>
+</view>

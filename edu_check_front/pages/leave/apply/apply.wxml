@@ -1,0 +1,33 @@
+<view class="page-container">
+  <view class="card form-card">
+    <view class="form-group">
+      <text class="form-label">请假类型</text>
+      <picker value="{{typeIndex}}" range="{{typeOptions}}" range-key="{{['name']}}" bindchange="onTypeChange">
+        <view class="picker-value">{{currentTypeName}}</view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">开始日期</text>
+      <picker mode="date" value="{{form.startDate}}" start="{{minDate}}" bindchange="onStartDateChange">
+        <view class="picker-value">{{form.startDate}}</view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">结束日期</text>
+      <picker mode="date" value="{{form.endDate}}" start="{{form.startDate}}" bindchange="onEndDateChange">
+        <view class="picker-value">{{form.endDate}}</view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">请假事由</text>
+      <textarea class="form-textarea" placeholder="请详细说明请假原因..." value="{{form.reason}}" bindinput="onReasonInput" />
+    </view>
+  </view>
+
+  <button class="btn-submit" bindtap="submit" disabled="{{submitting}}">
+    {{submitting ? '提交中...' : '提交申请'}}
+  </button>
+</view>

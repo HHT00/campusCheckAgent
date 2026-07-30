@@ -1,0 +1,39 @@
+<view class="page-container">
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <block wx:if="{{!loading && leave}}">
+    <view class="card detail-card">
+      <view class="detail-header">
+        <text class="detail-type">{{leave.typeName || leave.type}}请假</text>
+        <text class="detail-status {{leave.status}}">
+          {{leave.status === 'pending' ? '待审批' : (leave.status === 'approved' ? '已批准' : '已驳回')}}
+        </text>
+      </view>
+
+      <view class="detail-body">
+        <view class="detail-row">
+          <text class="detail-label">请假时段</text>
+          <text class="detail-value">{{leave.startDate}} ~ {{leave.endDate}}（{{leave.days}}天）</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">请假事由</text>
+          <text class="detail-value">{{leave.reason}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">提交时间</text>
+          <text class="detail-value">{{leave.submitTime}}</text>
+        </view>
+        <view wx:if="{{leave.approveTime}}" class="detail-row">
+          <text class="detail-label">审批时间</text>
+          <text class="detail-value">{{leave.approveTime}}</text>
+        </view>
+        <view wx:if="{{leave.rejectReason}}" class="detail-row">
+          <text class="detail-label">驳回原因</text>
+          <text class="detail-value" style="color: #E74C3C;">{{leave.rejectReason}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
